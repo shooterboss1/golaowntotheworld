@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clearance Sale - GOLAOWN</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="hero-section">
+        <!-- Premium Header -->
+    <header class="header">
+        <div class="header-container">
+            <a href="index.html" class="logo" style="display: flex; align-items: center; gap: 10px;">
+                <img src="./assets/images/Logo.jpeg" alt="GOLAOWN Logo" style="width: 40px; height: 40px; border-radius: 8px;">
+                GOLAOWN
+            </a>
+            
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="shop.html" class="nav-link">Shop</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </nav>
+            
+            <div class="nav-actions">
+                <div class="header-socials" style="display: flex; gap: 10px; margin-right: 15px; border-right: 1px solid var(--premium-border); padding-right: 15px;">
+                    <a href="https://www.instagram.com/gola_own" target="_blank" class="social-link" style="width: 30px; height: 30px; font-size: 0.9rem;"><i class="fab fa-instagram"></i></a>
+                    <a href="#" target="_blank" class="social-link" style="width: 30px; height: 30px; font-size: 0.9rem;"><i class="fab fa-tiktok"></i></a>
+                    <a href="#" target="_blank" class="social-link" style="width: 30px; height: 30px; font-size: 0.9rem;"><i class="fab fa-facebook-f"></i></a>
+                </div>
+                <button class="btn btn-ghost btn-sm" onclick="openSearch()">
+                    <i class="fas fa-search"></i>
+                </button>
+                <button class="btn btn-ghost btn-sm" onclick="openAccount()">
+                    <i class="fas fa-user"></i>
+                </button>
+                <button class="btn btn-primary btn-sm" onclick="openCart()">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span id="cart-count">0</span>
+                </button>
+            </div>
+            
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+        <main class="hero-content">
+            <h1 class="hero-title">Clearance Sale</h1>
+            <p class="hero-subtitle">Up to 70% off on selected items. Limited time only!</p>
+        </main>
+    </div>
+
+    <div class="clearance-container">
+        <!-- Sale Banner -->
+        <section class="sale-banner">
+            <div class="container">
+                <div class="banner-content">
+                    <h2>🔥 MEGA CLEARANCE EVENT</h2>
+                    <p>Final reductions on selected styles. While stocks last!</p>
+                    <div class="countdown-timer">
+                        <span>Ends in:</span>
+                        <div id="clearance-countdown">
+                            <span class="time-unit">02d</span>
+                            <span class="time-unit">15h</span>
+                            <span class="time-unit">34m</span>
+                            <span class="time-unit">22s</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Filter Section -->
+        <section class="clearance-filters">
+            <div class="container">
+                <div class="filter-header">
+                    <h2>Clearance Items</h2>
+                    <div class="filter-controls">
+                        <select id="discount-filter" class="filter-select">
+                            <option value="all">All Discounts</option>
+                            <option value="10">10% Off</option>
+                            <option value="20">20% Off</option>
+                            <option value="30">30% Off</option>
+                            <option value="40">40% Off</option>
+                            <option value="50">50% Off</option>
+                            <option value="60">60% Off</option>
+                            <option value="70">70% Off</option>
+                        </select>
+                        <select id="category-filter" class="filter-select">
+                            <option value="all">All Categories</option>
+                            <option value="polo">Polo Shirts</option>
+                            <option value="regular">T-Shirts</option>
+                            <option value="shorts">Shorts</option>
+                            <option value="sweats">Sweat Suits</option>
+                            <option value="hoodies">Hoodies</option>
+                            <option value="accessories">Accessories</option>
+                        </select>
+                        <select id="sort-filter" class="filter-select">
+                            <option value="discount">Highest Discount</option>
+                            <option value="price-low">Price: Low to High</option>
+                            <option value="price-high">Price: High to Low</option>
+                            <option value="newest">Newest First</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Clearance Products -->
+        <section class="clearance-products">
+            <div class="container">
+                <div class="products-grid" id="clearance-products">
+                    <!-- Products will be loaded here -->
+                </div>
+                
+                <div class="loading" id="loading">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <p>Loading clearance items...</p>
+                </div>
+                
+                <div class="no-results" id="no-results" style="display: none;">
+                    <i class="fas fa-search"></i>
+                    <h3>No clearance items found</h3>
+                    <p>Check back later for new deals!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sale Categories -->
+        <section class="sale-categories">
+            <div class="container">
+                <h2>Shop by Discount</h2>
+                <div class="discount-grid">
+                    <div class="discount-card" onclick="filterByDiscount('20')">
+                        <div class="discount-badge">20% OFF</div>
+                        <h3>Lightning Deals</h3>
+                        <p>Everyday essentials</p>
+                    </div>
+                    <div class="discount-card" onclick="filterByDiscount('40')">
+                        <div class="discount-badge">40% OFF</div>
+                        <h3>Half Price Selection</h3>
+                        <p>Popular styles</p>
+                    </div>
+                    <div class="discount-card" onclick="filterByDiscount('60')">
+                        <div class="discount-badge">60% OFF</div>
+                        <h3>Mega Deals</h3>
+                        <p>Seasonal favorites</p>
+                    </div>
+                    <div class="discount-card" onclick="filterByDiscount('70')">
+                        <div class="discount-badge">70% OFF</div>
+                        <h3>Final Clearance</h3>
+                        <p>Last chance items</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sale Info -->
+        <section class="sale-info">
+            <div class="container">
+                <div class="info-grid">
+                    <div class="info-item">
+                        <i class="fas fa-truck"></i>
+                        <h3>Free Shipping</h3>
+                        <p>On orders over $50</p>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-undo"></i>
+                        <h3>Easy Returns</h3>
+                        <p>30-day return policy</p>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-lock"></i>
+                        <h3>Secure Payment</h3>
+                        <p>Safe checkout process</p>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-clock"></i>
+                        <h3>Limited Time</h3>
+                        <p>While supplies last</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Premium Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>GOLAOWN</h3>
+                    <p>The pinnacle of luxury fashion, where exceptional quality meets contemporary design. Experience fashion that transcends expectations.</p>
+                    <div class="social-links" style="margin-top: 20px;">
+                        <a href="#" target="_blank" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" target="_blank" class="social-link" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                        <a href="https://www.instagram.com/gola_own" target="_blank" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <div class="footer-links">
+                        <a href="shop.html">Shop Collection</a>
+                        <a href="about.html">About Us</a>
+                        <a href="contact.html">Contact</a>
+                        <a href="returns.html">Returns</a>
+                        <a href="track-order.html">Track Order</a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <div class="footer-links">
+                        <a href="tel:+18324030393"><i class="fas fa-phone"></i> +1 832 403 0393</a>
+                        <a href="tel:+14452562355"><i class="fas fa-phone"></i> +1 445 256 2355</a>
+                        <a href="mailto:support@golaown.com"><i class="fas fa-envelope"></i> support@golaown.com</a>
+                        <a href="https://wa.me/18324030393" target="_blank" style="color: #25D366; font-weight: 600;"><i class="fab fa-whatsapp"></i> Chat on WhatsApp</a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Secure Payments</h3>
+                    <p style="font-size: 0.8rem; margin-bottom: 15px;">Secure checkout with major providers.</p>
+                    <div class="payment-methods-premium" style="display: flex; gap: 15px; font-size: 1.5rem; color: var(--white); opacity: 0.8;">
+                        <i class="fab fa-cc-visa" title="Visa"></i>
+                        <i class="fab fa-cc-mastercard" title="Mastercard"></i>
+                        <i class="fab fa-paypal" title="PayPal"></i>
+                        <i class="fab fa-apple-pay" title="Apple Pay"></i>
+                        <i class="fab fa-google-pay" title="Google Pay"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom" style="display: flex; flex-direction: column; align-items: center; gap: 15px; margin-top: 40px; border-top: 1px solid var(--premium-border); padding-top: 20px;">
+                <p>&copy; 2026 GOLAOWN. All rights reserved. | Luxury Streetwear Collection</p>
+            </div>
+        </div>
+    </footer>
+    
+    
+
+    <script src="api-client.js"></script>
+    <script>
+        // Clearance products with correct names and prices
+        const clearanceProducts = [
+            { id: 1, name: 'Polo Collars', originalPrice: 35, discount: 30, category: 'polo', gender: 'men', image: 'polo-collars.jpg' },
+            { id: 2, name: 'Regular T-Shirt', originalPrice: 25, discount: 40, category: 'regular', gender: 'men', image: 'regular.jpg' },
+            { id: 3, name: 'Women Shorts', originalPrice: 20, discount: 50, category: 'shorts', gender: 'women', image: 'women-shorts.jpg' },
+            { id: 4, name: 'Muscle Arms Shorts', originalPrice: 20, discount: 60, category: 'shorts', gender: 'men', image: 'muscle-arms-shorts.jpg' },
+            { id: 5, name: 'Frisch Shorts', originalPrice: 25, discount: 30, category: 'shorts', gender: 'men', image: 'frisch-shorts.jpg' },
+            { id: 6, name: 'Sweat Suit', originalPrice: 60, discount: 40, category: 'sweats', gender: 'unisex', image: 'sweat-suit.jpg' },
+            { id: 7, name: 'Hoodies Suit', originalPrice: 75, discount: 50, category: 'hoodies', gender: 'unisex', image: 'hoodies.jpg' },
+            { id: 8, name: 'Socks', originalPrice: 10, discount: 70, category: 'accessories', gender: 'unisex', image: 'socks.jpg' },
+            { id: 9, name: 'Bucket Hat', originalPrice: 10, discount: 50, category: 'accessories', gender: 'unisex', image: 'bucket-hat.jpg' },
+            { id: 10, name: 'Trucker Hat', originalPrice: 20, discount: 40, category: 'accessories', gender: 'unisex', image: 'trucker.jpg' }
+        ];
+
+        let filteredProducts = [...clearanceProducts];
+        let currentDiscount = 'all';
+        let currentCategory = 'all';
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            loadClearanceProducts();
+            setupEventListeners();
+            startCountdown();
+        });
+
+        function setupEventListeners() {
+            // Discount filter
+            document.getElementById('discount-filter').addEventListener('change', function() {
+                currentDiscount = this.value;
+                filterProducts();
+            });
+
+            // Category filter
+            document.getElementById('category-filter').addEventListener('change', function() {
+                currentCategory = this.value;
+                filterProducts();
+            });
+
+            // Sort filter
+            document.getElementById('sort-filter').addEventListener('change', function() {
+                sortProducts(this.value);
+            });
+        }
+
+        function loadClearanceProducts() {
+            document.getElementById('loading').style.display = 'block';
+            document.getElementById('clearance-products').style.display = 'none';
+            document.getElementById('no-results').style.display = 'none';
+
+            // Simulate loading delay
+            setTimeout(() => {
+                displayProducts(filteredProducts);
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('clearance-products').style.display = 'grid';
+            }, 500);
+        }
+
+        function displayProducts(products) {
+            const grid = document.getElementById('clearance-products');
+            grid.innerHTML = '';
+
+            if (products.length === 0) {
+                document.getElementById('clearance-products').style.display = 'none';
+                document.getElementById('no-results').style.display = 'block';
+                return;
+            }
+
+            products.forEach(product => {
+                const productCard = createClearanceCard(product);
+                grid.appendChild(productCard);
+            });
+        }
+
+        function createClearanceCard(product) {
+            const salePrice = (product.originalPrice * (1 - product.discount / 100)).toFixed(2);
+            const card = document.createElement('div');
+            card.className = 'clearance-card';
+            
+            card.innerHTML = `
+                <div class="clearance-image">
+                    <img src="assets/images/${product.image}" alt="${product.name}" onerror="this.src='assets/images/hero_bg.png'">
+                    <div class="clearance-badge">-${product.discount}%</div>
+                    <div class="clearance-overlay">
+                        <button class="quick-view-btn" onclick="quickView(${product.id})">Quick View</button>
+                        <button class="add-to-cart-btn" onclick="addToCart(${product.id})">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="clearance-info">
+                    <h3 class="product-name">${product.name}</h3>
+                    <div class="price-info">
+                        <span class="original-price">$${product.originalPrice}</span>
+                        <span class="sale-price">$${salePrice}</span>
+                    </div>
+                    <div class="product-meta">
+                        <span class="category-tag">${product.category}</span>
+                        <span class="gender-tag">${product.gender}</span>
+                        <span class="stock-info">Limited Stock</span>
+                    </div>
+                </div>
+            `;
+            return card;
+        }
+
+        function filterProducts() {
+            filteredProducts = clearanceProducts.filter(product => {
+                const discountMatch = currentDiscount === 'all' || product.discount == currentDiscount;
+                const categoryMatch = currentCategory === 'all' || product.category === currentCategory;
+                return discountMatch && categoryMatch;
+            });
+            
+            sortProducts(document.getElementById('sort-filter').value);
+        }
+
+        function sortProducts(sortBy) {
+            let sorted = [...filteredProducts];
+            
+            switch(sortBy) {
+                case 'discount':
+                    sorted.sort((a, b) => b.discount - a.discount);
+                    break;
+                case 'price-low':
+                    sorted.sort((a, b) => (a.originalPrice * (1 - a.discount / 100)) - (b.originalPrice * (1 - b.discount / 100)));
+                    break;
+                case 'price-high':
+                    sorted.sort((a, b) => (b.originalPrice * (1 - b.discount / 100)) - (a.originalPrice * (1 - a.discount / 100)));
+                    break;
+                case 'newest':
+                    sorted.sort((a, b) => b.id - a.id);
+                    break;
+            }
+            
+            displayProducts(sorted);
+        }
+
+        function filterByDiscount(discount) {
+            document.getElementById('discount-filter').value = discount;
+            currentDiscount = discount;
+            filterProducts();
+        }
+
+        async function quickView(productId) {
+            const product = clearanceProducts.find(p => p.id === productId);
+            const salePrice = (product.originalPrice * (1 - product.discount / 100)).toFixed(2);
+            
+            alert(`Quick View: ${product.name}\nOriginal Price: $${product.originalPrice}\nSale Price: $${salePrice}\nDiscount: ${product.discount}% OFF\nCategory: ${product.category}\nGender: ${product.gender}`);
+        }
+
+        async function addToCart(productId) {
+            try {
+                if (!window.api.isLoggedIn()) {
+                    window.api.showNotification('Please log in to add items to cart', 'error');
+                    return;
+                }
+                
+                const result = await window.api.addToCart(productId, 1, 'M');
+                
+                if (result.success) {
+                    window.api.showNotification('Clearance item added to cart successfully!');
+                } else {
+                    window.api.showNotification(result.error, 'error');
+                }
+            } catch (error) {
+                window.api.showNotification('Error adding item to cart', 'error');
+            }
+        }
+
+        // Countdown timer
+        function startCountdown() {
+            const endDate = new Date();
+            endDate.setDate(endDate.getDate() + 2); // 2 days from now
+
+            function updateCountdown() {
+                const now = new Date();
+                const timeLeft = endDate - now;
+
+                if (timeLeft > 0) {
+                    const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+                    const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                    const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+                    const countdownEl = document.getElementById('clearance-countdown');
+                    if (countdownEl) {
+                        countdownEl.innerHTML = `
+                            <span class="time-unit">${String(days).padStart(2, '0')}d</span>
+                            <span class="time-unit">${String(hours).padStart(2, '0')}h</span>
+                            <span class="time-unit">${String(minutes).padStart(2, '0')}m</span>
+                            <span class="time-unit">${String(seconds).padStart(2, '0')}s</span>
+                        `;
+                    }
+                }
+            }
+
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+        }
+    </script>
+    <a href="https://wa.me/18324030393" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+</body>
+</html>

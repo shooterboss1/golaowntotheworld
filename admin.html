@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GOLAOWN - Admin Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { background: #0a0a0a; color: white; margin: 0; display: flex; height: 100vh; overflow: hidden; font-family: 'Inter', sans-serif; }
+        .admin-sidebar { width: 260px; background: rgba(20, 20, 20, 0.95); border-right: 1px solid rgba(255,255,255,0.1); display: flex; flex-direction: column; padding: 2rem 1rem; }
+        .admin-sidebar .logo { margin-bottom: 2.5rem; display: flex; align-items: center; gap: 12px; font-size: 1.5rem; font-weight: 800; text-decoration: none; color: white; padding-left: 10px; }
+        .admin-sidebar .logo img { width: 45px; height: 45px; border-radius: 10px; object-fit: cover;}
+        .nav-link { display: flex; align-items: center; gap: 15px; padding: 12px 20px; color: #a1a1aa; text-decoration: none; border-radius: 8px; margin-bottom: 8px; font-weight: 500; transition: all 0.3s ease; cursor: pointer; }
+        .nav-link:hover, .nav-link.active { background: rgba(255,255,255,0.1); color: white; }
+        .nav-link i { width: 20px; text-align: center; }
+        
+        .admin-main { flex: 1; padding: 2.5rem 3.5rem; overflow-y: auto; background: linear-gradient(135deg, #0a0a0a 0%, #111 100%); }
+        .admin-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2.5rem; }
+        .admin-header h1 { font-size: 2.2rem; margin: 0; font-weight: 700; letter-spacing: -1px; }
+        
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 3rem; }
+        .stat-card { background: rgba(255,255,255,0.03); padding: 1.5rem 2rem; border-radius: 16px; border: 1px solid rgba(255,255,255,0.08); backdrop-filter: blur(10px); transition: transform 0.3s; }
+        .stat-card:hover { transform: translateY(-5px); border-color: rgba(255,255,255,0.2); }
+        .stat-card h3 { color: #a1a1aa; font-size: 0.85rem; margin: 0 0 10px 0; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+        .stat-card .value { font-size: 2.8rem; font-weight: 800; margin: 0; color: white; }
+        
+        .table-container { background: rgba(255,255,255,0.03); border-radius: 16px; border: 1px solid rgba(255,255,255,0.08); padding: 2rem; overflow: hidden; backdrop-filter: blur(10px); }
+        .table-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; }
+        .table-header h2 { margin: 0; font-size: 1.4rem; font-weight: 600; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { padding: 1.2rem 1rem; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        th { color: #a1a1aa; font-weight: 600; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 1px; padding-top: 0; }
+        tr:last-child td { border-bottom: none; }
+        tr:hover td { background: rgba(255,255,255,0.02); }
+        
+        .tag { padding: 4px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; background: rgba(255,255,255,0.1); color: white; }
+        .img-preview { width: 40px; height: 40px; border-radius: 8px; object-fit: cover; }
+        
+        .action-btn { background: none; border: none; color: #a1a1aa; cursor: pointer; padding: 8px; border-radius: 6px; transition: all 0.3s; font-size: 1rem; margin-right: 5px; }
+        .action-btn:hover { background: rgba(255,255,255,0.1); color: white; }
+        .action-btn.delete:hover { background: rgba(239, 68, 68, 0.1); color: #ef4444; }
+        
+        .btn-add { background: white; color: black; border: none; padding: 10px 20px; border-radius: 8px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: all 0.3s; }
+        .btn-add:hover { background: #e5e5e5; transform: translateY(-2px); }
+        
+        /* Modal Styles */
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); backdrop-filter: blur(8px); z-index: 1000; align-items: center; justify-content: center; }
+        .modal.active { display: flex; }
+        .modal-content { background: #18181b; padding: 2.5rem; border-radius: 20px; width: 100%; max-width: 550px; border: 1px solid rgba(255,255,255,0.1); max-height: 90vh; overflow-y: auto; position: relative;}
+        .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; }
+        .modal-header h2 { margin: 0; font-size: 1.5rem; }
+        .close-btn { background: none; border: none; color: #a1a1aa; font-size: 1.5rem; cursor: pointer; transition: color 0.3s; }
+        .close-btn:hover { color: white; }
+        
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+        .form-group { margin-bottom: 1.5rem; }
+        .form-group.full { grid-column: span 2; }
+        .form-group label { display: block; margin-bottom: 0.5rem; color: #e4e4e7; font-size: 0.85rem; font-weight: 500; }
+        .form-group input, .form-group select { width: 100%; padding: 0.85rem 1rem; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; color: white; font-family: inherit; transition: all 0.3s; }
+        .form-group input:focus, .form-group select:focus { outline: none; border-color: white; background: rgba(255,255,255,0.08); }
+        .btn-submit { width: 100%; background: white; color: black; border: none; padding: 1rem; border-radius: 10px; font-weight: 600; cursor: pointer; margin-top: 1rem; transition: background 0.3s; }
+        .btn-submit:hover { background: #e5e5e5; }
+        
+        /* Login Screen */
+        .login-overlay { position: fixed; inset: 0; background: #0a0a0a; z-index: 2000; display: flex; align-items: center; justify-content: center; }
+        .login-card { background: rgba(255,255,255,0.03); padding: 3rem; border-radius: 24px; border: 1px solid rgba(255,255,255,0.1); width: 100%; max-width: 400px; text-align: center; backdrop-filter: blur(20px); }
+        .login-card img { width: 80px; height: 80px; border-radius: 16px; margin-bottom: 1.5rem; object-fit: cover;}
+        .login-card h2 { margin: 0 0 0.5rem 0; font-size: 1.8rem; }
+        .login-card p { color: #a1a1aa; margin-bottom: 2rem; font-size: 0.9rem; }
+        .login-card input { margin-bottom: 1rem; text-align: center; }
+        
+        .hidden { display: none !important; }
+    </style>
+</head>
+<body>
+    
+    <!-- Login Overlay -->
+    <div id="login-overlay" class="login-overlay">
+        <div class="login-card">
+            <img src="assets/images/Logo.jpeg" alt="GOLAOWN">
+            <h2>Admin Portal</h2>
+            <p>Secure access to Golaown inventory</p>
+            <form id="login-form">
+                <div class="form-group">
+                    <input type="text" id="admin-username" placeholder="Username" required style="text-align: left;">
+                </div>
+                <div class="form-group">
+                    <input type="password" id="admin-password" placeholder="Password" required style="text-align: left;">
+                </div>
+                <button type="submit" class="btn-submit">Login</button>
+            </form>
+            <p style="margin-top: 1rem; font-size: 0.75rem; color: #666;">Default: admin / admin123</p>
+        </div>
+    </div>
+
+    <!-- Sidebar -->
+    <aside class="admin-sidebar">
+        <a href="index.html" class="logo">
+            <img src="assets/images/Logo.jpeg" alt="GOLAOWN Logo">
+            GOLAOWN
+        </a>
+        <nav>
+            <a class="nav-link active" onclick="switchTab('dashboard')"><i class="fas fa-chart-pie"></i> Overview</a>
+            <a class="nav-link" onclick="switchTab('inventory')"><i class="fas fa-tshirt"></i> Inventory</a>
+            <a class="nav-link" href="index.html"><i class="fas fa-external-link-alt"></i> View Site</a>
+            <div style="flex:1"></div>
+            <a class="nav-link" onclick="logout()" style="margin-top: 50px;"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="admin-main">
+        <div class="admin-header">
+            <h1 id="page-title">Dashboard Overview</h1>
+            <div id="date-display" style="color: #a1a1aa; font-weight: 500;"></div>
+        </div>
+
+        <!-- Dashboard Tab -->
+        <div id="tab-dashboard">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3>Total Products</h3>
+                    <div class="value" id="stat-total">0</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Categories</h3>
+                    <div class="value" id="stat-categories">7</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Low Stock</h3>
+                    <div class="value" id="stat-low-stock" style="color: #f59e0b;">0</div>
+                </div>
+            </div>
+            
+            <div class="table-container">
+                <div class="table-header">
+                    <h2>Recent Inventory</h2>
+                    <button class="btn-add" onclick="switchTab('inventory')">Manage All</button>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Item</th>
+                            <th>Category</th>
+                            <th>Price</th>
+                            <th>Stock</th>
+                        </tr>
+                    </thead>
+                    <tbody id="recent-table-body">
+                        <!-- Populated via JS -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Inventory Tab -->
+        <div id="tab-inventory" class="hidden">
+            <div class="table-container">
+                <div class="table-header">
+                    <h2>All Products</h2>
+                    <button class="btn-add" onclick="openModal()"><i class="fas fa-plus"></i> Add Product</button>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Image</th>
+                            <th>Name</th>
+                            <th>Category</th>
+                            <th>Gender</th>
+                            <th>Price</th>
+                            <th>Stock</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="inventory-table-body">
+                        <!-- Populated via JS -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <!-- Add/Edit Modal -->
+    <div id="product-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modal-title">Add New Product</h2>
+                <button class="close-btn" onclick="closeModal()"><i class="fas fa-times"></i></button>
+            </div>
+            <form id="product-form">
+                <input type="hidden" id="product-id">
+                <div class="form-grid">
+                    <div class="form-group full">
+                        <label>Product Name</label>
+                        <input type="text" id="product-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Price ($)</label>
+                        <input type="number" id="product-price" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Stock Quantity</label>
+                        <input type="number" id="product-stock" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Category</label>
+                        <select id="product-category" required>
+                            <option value="polo t-shirt">Polo T-Shirt</option>
+                            <option value="cap">Cap</option>
+                            <option value="bucket cap">Bucket Cap</option>
+                            <option value="socks">Socks</option>
+                            <option value="gym outfit">Gym Outfit</option>
+                            <option value="men">Men</option>
+                            <option value="women">Women</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Gender Tag</label>
+                        <select id="product-gender" required>
+                            <option value="men">Men</option>
+                            <option value="women">Women</option>
+                            <option value="unisex">Unisex</option>
+                        </select>
+                    </div>
+                    <div class="form-group full">
+                        <label>Image Path (e.g. assets/images/polo.jpg)</label>
+                        <input type="text" id="product-image" required>
+                    </div>
+                </div>
+                <button type="submit" class="btn-submit">Save Product</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Core Scripts -->
+    <script src="api-client.js"></script>
+    <script>
+        // Setup Date
+        document.getElementById('date-display').textContent = new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+
+        // Auth Logic
+        document.getElementById('login-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const user = document.getElementById('admin-username').value;
+            const pass = document.getElementById('admin-password').value;
+            
+            // Check against real database via API if possible, or just keep the simple check for now
+            if((user === 'admin' && pass === 'admin123') || (user === 'admin@wirwp.com' && pass === 'admin123')) {
+                document.getElementById('login-overlay').classList.add('hidden');
+                sessionStorage.setItem('adminAuth', 'true');
+                // Store user in localStorage as well to sync with ApiClient
+                localStorage.setItem('currentUser', JSON.stringify({
+                    firstName: 'Super',
+                    lastName: 'Admin',
+                    email: user,
+                    role: 'admin'
+                }));
+                window.location.href = 'admin-dashboard.html';
+            } else {
+                alert('Invalid username or password');
+            }
+        });
+
+        if(sessionStorage.getItem('adminAuth') === 'true') {
+            document.getElementById('login-overlay').classList.add('hidden');
+            loadData();
+        }
+
+        function logout() {
+            sessionStorage.removeItem('adminAuth');
+            window.location.reload();
+        }
+
+        // Navigation Logic
+        function switchTab(tab) {
+            document.querySelectorAll('.nav-link').forEach(el => el.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+            
+            document.getElementById('tab-dashboard').classList.add('hidden');
+            document.getElementById('tab-inventory').classList.add('hidden');
+            
+            document.getElementById('tab-' + tab).classList.remove('hidden');
+            document.getElementById('page-title').textContent = tab === 'dashboard' ? 'Dashboard Overview' : 'Inventory Management';
+        }
+
+        // Data Management
+        let allProducts = [];
+
+        async function loadData() {
+            try {
+                const res = await window.api.getProducts();
+                if(res.success) {
+                    allProducts = res.data;
+                    updateDashboard();
+                    renderInventory();
+                }
+            } catch (err) {
+                console.error(err);
+            }
+        }
+
+        function updateDashboard() {
+            document.getElementById('stat-total').textContent = allProducts.length;
+            const lowStockCount = allProducts.filter(p => p.stock < 10).length;
+            document.getElementById('stat-low-stock').textContent = lowStockCount;
+            
+            // Render Recent 5
+            const recent = allProducts.slice(-5).reverse();
+            const tbody = document.getElementById('recent-table-body');
+            tbody.innerHTML = recent.map(p => `
+                <tr>
+                    <td><strong>${p.name}</strong></td>
+                    <td><span class="tag">${p.category}</span></td>
+                    <td>$${parseFloat(p.price).toFixed(2)}</td>
+                    <td>${p.stock}</td>
+                </tr>
+            `).join('');
+        }
+
+        function renderInventory() {
+            const tbody = document.getElementById('inventory-table-body');
+            tbody.innerHTML = allProducts.map(p => `
+                <tr>
+                    <td><img src="${p.image_url}" class="img-preview" onerror="this.src='assets/images/Logo.jpeg'"></td>
+                    <td><strong>${p.name}</strong></td>
+                    <td><span class="tag">${p.category}</span></td>
+                    <td><span class="tag" style="background: rgba(255,255,255,0.05);">${p.gender}</span></td>
+                    <td>$${parseFloat(p.price).toFixed(2)}</td>
+                    <td>${p.stock}</td>
+                    <td>
+                        <button class="action-btn" onclick="editProduct(${p.id})"><i class="fas fa-edit"></i></button>
+                        <button class="action-btn delete" onclick="deleteProduct(${p.id})"><i class="fas fa-trash"></i></button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        // Modal Logic
+        const modal = document.getElementById('product-modal');
+        const form = document.getElementById('product-form');
+
+        function openModal() {
+            form.reset();
+            document.getElementById('product-id').value = '';
+            document.getElementById('modal-title').textContent = 'Add New Product';
+            modal.classList.add('active');
+        }
+
+        function closeModal() {
+            modal.classList.remove('active');
+        }
+
+        function editProduct(id) {
+            const p = allProducts.find(x => x.id === id);
+            if(!p) return;
+            
+            document.getElementById('product-id').value = p.id;
+            document.getElementById('product-name').value = p.name;
+            document.getElementById('product-price').value = p.price;
+            document.getElementById('product-stock').value = p.stock;
+            document.getElementById('product-category').value = p.category;
+            document.getElementById('product-gender').value = p.gender;
+            document.getElementById('product-image').value = p.image_url;
+            
+            document.getElementById('modal-title').textContent = 'Edit Product';
+            modal.classList.add('active');
+        }
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const id = document.getElementById('product-id').value;
+            const productData = {
+                name: document.getElementById('product-name').value,
+                price: parseFloat(document.getElementById('product-price').value),
+                stock: parseInt(document.getElementById('product-stock').value),
+                category: document.getElementById('product-category').value,
+                gender: document.getElementById('product-gender').value,
+                image_url: document.getElementById('product-image').value,
+                condition: 'Standard',
+                description: ''
+            };
+
+            const submitBtn = form.querySelector('.btn-submit');
+            submitBtn.textContent = 'Saving...';
+            
+            let res;
+            if (id) {
+                res = await window.api.updateProduct(id, productData);
+            } else {
+                res = await window.api.createProduct(productData);
+            }
+
+            submitBtn.textContent = 'Save Product';
+
+            if (res.success) {
+                closeModal();
+                loadData(); // Refresh list
+            } else {
+                alert('Error saving product: ' + res.error);
+            }
+        });
+
+        async function deleteProduct(id) {
+            if(confirm('Are you sure you want to delete this product?')) {
+                const res = await window.api.deleteProduct(id);
+                if(res.success) {
+                    loadData();
+                } else {
+                    alert('Error deleting product');
+                }
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,1235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details - GOLAOWN</title>
+    <meta name="description" content="Premium luxury streetwear from GOLAOWN. Experience exceptional quality and contemporary design.">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #000;
+            --secondary-color: #fff;
+            --accent-color: #000;
+            --text-light: #666;
+            --border-color: #eee;
+            --background-light: #f9f9f9;
+            --shadow-sm: 0 2px 4px rgba(0,0,0,0.1);
+            --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 25px rgba(0,0,0,0.1);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            line-height: 1.6;
+            color: var(--primary-color);
+            background: var(--secondary-color);
+        }
+
+        .header {
+            padding: 1rem 2rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .logo { display: flex; align-items: center; gap: 0.5rem; text-decoration: none; color: var(--primary-color); font-weight: 800; }
+        .logo-img { height: 40px; }
+        .text-gold { color: #d4af37; }
+        .nav-menu { display: flex; gap: 2rem; }
+        .nav-link { text-decoration: none; color: var(--primary-color); font-weight: 500; }
+        .header-actions { display: flex; gap: 1rem; }
+        .icon-btn { background: none; border: none; cursor: pointer; font-size: 1.25rem; }
+        .mobile-menu-btn { display: none; }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+            background: var(--background-light);
+            border: 1px solid var(--border-color);
+            border-radius: 25px;
+            padding: 0.5rem 1rem;
+            width: 300px;
+            transition: var(--transition);
+        }
+
+        .search-bar:focus-within {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+        }
+
+        .search-bar input {
+            border: none;
+            background: none;
+            outline: none;
+            flex: 1;
+            padding: 0.25rem;
+        }
+
+        .search-bar button {
+            background: none;
+            border: none;
+            color: var(--text-light);
+            cursor: pointer;
+            padding: 0.25rem;
+        }
+
+        .action-btn {
+            background: none;
+            border: none;
+            color: var(--primary-color);
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 50%;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .action-btn:hover {
+            background: var(--background-light);
+            transform: scale(1.1);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: var(--accent-color);
+            color: var(--secondary-color);
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            max-width: 1400px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+            color: var(--text-light);
+        }
+
+        .breadcrumb a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .breadcrumb a:hover {
+            color: var(--accent-color);
+        }
+
+        .breadcrumb .separator {
+            color: var(--border-color);
+        }
+
+        /* Product Detail Container */
+        .product-detail-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        /* Product Gallery */
+        .product-gallery {
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+        }
+
+        .main-image-container {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 1rem;
+            background: var(--background-light);
+        }
+
+        .main-image {
+            width: 100%;
+            height: 600px;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .image-zoom-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--secondary-color);
+            border: none;
+            padding: 0.5rem;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+        }
+
+        .image-zoom-btn:hover {
+            background: var(--accent-color);
+            color: var(--secondary-color);
+        }
+
+        .video-btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--secondary-color);
+            border: none;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: var(--shadow-lg);
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .video-btn:hover {
+            background: var(--accent-color);
+            color: var(--secondary-color);
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+
+        .thumbnail-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.5rem;
+        }
+
+        .thumbnail {
+            width: 100%;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 2px solid transparent;
+        }
+
+        .thumbnail:hover,
+        .thumbnail.active {
+            border-color: var(--accent-color);
+            transform: scale(1.05);
+        }
+
+        /* Product Info */
+        .product-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .product-header {
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 2rem;
+        }
+
+        .product-brand {
+            color: var(--text-light);
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-name {
+            font-size: 2rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        .product-rating {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .stars {
+            color: #ffc107;
+        }
+
+        .rating-count {
+            color: var(--text-light);
+            font-size: 0.875rem;
+        }
+
+        .write-review {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .product-price {
+            display: flex;
+            align-items: baseline;
+            gap: 1rem;
+        }
+
+        .current-price {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent-color);
+        }
+
+        .original-price {
+            font-size: 1.25rem;
+            color: var(--text-light);
+            text-decoration: line-through;
+        }
+
+        .discount-badge {
+            background: #ef4444;
+            color: var(--secondary-color);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        /* Product Options */
+        .product-options {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .option-group {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .option-label {
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .size-guide {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .size-options {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .size-option {
+            padding: 0.75rem 1.5rem;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background: var(--secondary-color);
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+            position: relative;
+        }
+
+        .size-option:hover {
+            border-color: var(--accent-color);
+        }
+
+        .size-option.selected {
+            border-color: var(--accent-color);
+            background: var(--accent-color);
+            color: var(--secondary-color);
+        }
+
+        .size-option.unavailable {
+            opacity: 0.5;
+            cursor: not-allowed;
+            text-decoration: line-through;
+        }
+
+        .color-options {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .color-option {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 3px solid transparent;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .color-option:hover,
+        .color-option.selected {
+            border-color: var(--primary-color);
+            transform: scale(1.1);
+        }
+
+        .color-option.selected::after {
+            content: '✓';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: var(--secondary-color);
+            font-weight: bold;
+            text-shadow: 0 0 2px rgba(0,0,0,0.5);
+        }
+
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            gap: 0;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            width: fit-content;
+        }
+
+        .quantity-btn {
+            background: none;
+            border: none;
+            padding: 0.75rem;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 1.25rem;
+        }
+
+        .quantity-btn:hover {
+            background: var(--background-light);
+        }
+
+        .quantity-input {
+            border: none;
+            text-align: center;
+            width: 60px;
+            padding: 0.75rem;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .quantity-input:focus {
+            outline: none;
+        }
+
+        /* Product Actions */
+        .product-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            color: var(--secondary-color);
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary:hover {
+            background: #333;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary-color);
+            color: var(--secondary-color);
+        }
+
+        .action-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .action-btn-secondary {
+            background: var(--background-light);
+            border: 1px solid var(--border-color);
+            padding: 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .action-btn-secondary:hover {
+            background: var(--accent-color);
+            color: var(--secondary-color);
+            border-color: var(--accent-color);
+        }
+
+        /* Product Features */
+        .product-features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            padding: 1.5rem;
+            background: var(--background-light);
+            border-radius: 8px;
+        }
+
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.875rem;
+        }
+
+        .feature i {
+            color: var(--accent-color);
+            font-size: 1rem;
+        }
+
+        /* Product Description */
+        .product-description {
+            border-top: 1px solid var(--border-color);
+            padding-top: 2rem;
+        }
+
+        .description-tabs {
+            display: flex;
+            gap: 2rem;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 2rem;
+        }
+
+        .tab-btn {
+            background: none;
+            border: none;
+            padding: 1rem 0;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .tab-btn:hover {
+            color: var(--accent-color);
+        }
+
+        .tab-btn.active {
+            color: var(--accent-color);
+        }
+
+        .tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--accent-color);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .review-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Premium Header -->
+    <header class="header">
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <img src="./assets/images/Logo.jpeg" alt="GOLAOWN Logo" class="logo-img">
+                <span class="logo-text">GOLA<span class="text-gold">OWN</span></span>
+            </a>
+
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="shop.html" class="nav-link active">Shop</a>
+                <a href="men.html" class="nav-link">Men</a>
+                <a href="women.html" class="nav-link">Women</a>
+                <a href="search.html" class="nav-link">Search</a>
+            </nav>
+
+            <div class="header-actions">
+                <button class="icon-btn" onclick="openSearch()" aria-label="Search">
+                    <i class="fas fa-search"></i>
+                </button>
+                <button class="icon-btn" onclick="openAccount()" aria-label="Account">
+                    <i class="fas fa-user"></i>
+                </button>
+                <button class="icon-btn cart-btn" onclick="openCart()" aria-label="Cart">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count" id="cart-count">0</span>
+                </button>
+                <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb">
+        <a href="index.html">Home</a>
+        <span class="separator">/</span>
+        <a href="shop.html">Shop</a>
+        <span class="separator">/</span>
+        <span class="product-name-breadcrumb">Product Details</span>
+    </nav>
+
+    <!-- Product Detail Container -->
+    <div class="product-detail-container">
+        <!-- Product Gallery -->
+        <div class="product-gallery">
+            <div class="main-image-container">
+                <img src="./assets/images/polo.jpg" alt="Premium Polo Shirt" class="main-image" id="main-image">
+                <button class="image-zoom-btn" onclick="toggleZoom()">
+                    <i class="fas fa-search-plus"></i>
+                </button>
+                <button class="video-btn" onclick="playVideo()">
+                    <i class="fas fa-play"></i>
+                </button>
+            </div>
+            <div class="thumbnail-container">
+                <img src="./assets/images/polo.jpg" alt="Premium Polo Shirt" class="thumbnail active" onclick="changeImage(0)">
+                <img src="./assets/images/polo (2).jpg" alt="Premium Polo Shirt" class="thumbnail" onclick="changeImage(1)">
+                <img src="./assets/images/polo (3).jpg" alt="Premium Polo Shirt" class="thumbnail" onclick="changeImage(2)">
+                <img src="./assets/images/polo (4).jpg" alt="Premium Polo Shirt" class="thumbnail" onclick="changeImage(3)">
+                <img src="./assets/images/polo (5).jpg" alt="Premium Polo Shirt" class="thumbnail" onclick="changeImage(4)">
+                <img src="./assets/images/polo (6).jpg" alt="Premium Polo Shirt" class="thumbnail" onclick="changeImage(5)">
+                <img src="./assets/images/polo (7).jpg" alt="Premium Polo Shirt" class="thumbnail" onclick="changeImage(6)">
+                <video src="./assets/images/WhatsApp Video 2026-04-26 at 4.48.40 PM.mp4" class="thumbnail" onclick="playVideo()" style="object-fit: cover;">
+                    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; font-size: 1.5rem;">
+                        <i class="fas fa-play"></i>
+                    </div>
+                </video>
+            </div>
+        </div>
+
+        <!-- Product Info -->
+        <div class="product-info">
+            <div class="product-header">
+                <div class="product-brand">GOLAOWN</div>
+                <h1 class="product-name">Premium Polo Shirt</h1>
+                <div class="product-rating">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <span class="rating-count">(128 reviews)</span>
+                    <a href="#reviews" class="write-review">Write a review</a>
+                </div>
+                <div class="product-price">
+                    <span class="current-price">$89.99</span>
+                    <span class="original-price">$120.00</span>
+                    <span class="discount-badge">25% OFF</span>
+                </div>
+            </div>
+
+            <div class="product-options">
+                <div class="option-group">
+                    <div class="option-label">
+                        <span>Select Size</span>
+                        <a href="#" class="size-guide" onclick="openSizeChart(event)">Size Guide</a>
+                    </div>
+                    <div class="size-options">
+                        <button class="size-option" onclick="selectSize('XS')">XS</button>
+                        <button class="size-option" onclick="selectSize('S')">S</button>
+                        <button class="size-option selected" onclick="selectSize('M')">M</button>
+                        <button class="size-option" onclick="selectSize('L')">L</button>
+                        <button class="size-option" onclick="selectSize('XL')">XL</button>
+                        <button class="size-option" onclick="selectSize('XXL')">XXL</button>
+                        <button class="size-option unavailable" disabled>3XL</button>
+                    </div>
+                </div>
+
+                <div class="option-group">
+                    <div class="option-label">
+                        <span>Select Color</span>
+                    </div>
+                    <div class="color-options">
+                        <div class="color-option selected" style="background: #000;" onclick="selectColor('black')"></div>
+                        <div class="color-option" style="background: #fff; border: 1px solid var(--border-color);" onclick="selectColor('white')"></div>
+                        <div class="color-option" style="background: #3b82f6;" onclick="selectColor('blue')"></div>
+                        <div class="color-option" style="background: #ef4444;" onclick="selectColor('red')"></div>
+                        <div class="color-option" style="background: #10b981;" onclick="selectColor('green')"></div>
+                        <div class="color-option" style="background: #6b7280;" onclick="selectColor('gray')"></div>
+                    </div>
+                </div>
+
+                <div class="option-group">
+                    <div class="option-label">
+                        <span>Quantity</span>
+                    </div>
+                    <div class="quantity-selector">
+                        <button class="quantity-btn" onclick="updateQuantity(-1)">-</button>
+                        <input type="number" class="quantity-input" value="1" min="1" max="10" onchange="validateQuantity()">
+                        <button class="quantity-btn" onclick="updateQuantity(1)">+</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-actions">
+                <button class="btn-primary" onclick="addToCart()">
+                    <i class="fas fa-shopping-cart"></i>
+                    Add to Cart
+                </button>
+                <div class="action-buttons">
+                    <button class="action-btn-secondary" onclick="addToWishlist()">
+                        <i class="far fa-heart"></i>
+                        Wishlist
+                    </button>
+                    <button class="action-btn-secondary" onclick="compareProduct()">
+                        <i class="fas fa-exchange-alt"></i>
+                        Compare
+                    </button>
+                </div>
+            </div>
+
+            <div class="product-features">
+                <div class="feature">
+                    <i class="fas fa-truck"></i>
+                    <span>Free shipping on orders over $50</span>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-undo"></i>
+                    <span>30-day return policy</span>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>1-year warranty</span>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-check-circle"></i>
+                    <span>In stock - Ready to ship</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product Description -->
+    <div class="product-description" style="max-width: 1400px; margin: 0 auto; padding: 0 2rem;">
+        <div class="description-tabs">
+            <button class="tab-btn active" onclick="switchTab('details')">Details</button>
+            <button class="tab-btn" onclick="switchTab('care')">Care Instructions</button>
+            <button class="tab-btn" onclick="switchTab('shipping')">Shipping & Returns</button>
+            <button class="tab-btn" onclick="switchTab('reviews')">Reviews (128)</button>
+        </div>
+
+        <div class="tab-content active" id="details-tab">
+            <h3>Product Details</h3>
+            <p>Experience premium comfort and style with our Premium Polo Shirt. Crafted from high-quality cotton blend fabric, this polo offers the perfect balance of sophistication and casual comfort.</p>
+            <ul>
+                <li><i class="fas fa-check"></i> Premium cotton blend fabric (65% cotton, 35% polyester)</li>
+                <li><i class="fas fa-check"></i> Classic polo collar with button placket</li>
+                <li><i class="fas fa-check"></i> Ribbed cuffs and hem for durability</li>
+                <li><i class="fas fa-check"></i> Machine washable for easy care</li>
+                <li><i class="fas fa-check"></i> Available in multiple colors and sizes</li>
+                <li><i class="fas fa-check"></i> Perfect for business casual or weekend wear</li>
+            </ul>
+        </div>
+
+        <div class="tab-content" id="care-tab">
+            <h3>Care Instructions</h3>
+            <p>To maintain the quality and longevity of your Premium Polo Shirt:</p>
+            <ul>
+                <li><i class="fas fa-tint"></i> Machine wash cold with like colors</li>
+                <li><i class="fas fa-tint"></i> Use only non-chlorine bleach when needed</li>
+                <li><i class="fas fa-temperature-high"></i> Tumble dry low heat</li>
+                <li><i class="fas fa-iron"></i> Cool iron if needed</li>
+                <li><i class="fas fa-ban"></i> Do not dry clean</li>
+                <li><i class="fas fa-ban"></i> Do not iron directly on print/logo</li>
+            </ul>
+        </div>
+
+        <div class="tab-content" id="shipping-tab">
+            <h3>Shipping & Returns</h3>
+            <p><strong>Shipping:</strong></p>
+            <ul>
+                <li><i class="fas fa-truck"></i> Standard shipping: 5-7 business days (Free on orders over $50)</li>
+                <li><i class="fas fa-rocket"></i> Express shipping: 2-3 business days ($15)</li>
+                <li><i class="fas fa-globe"></i> International shipping: 7-14 business days (rates vary)</li>
+            </ul>
+            <p><strong>Returns:</strong></p>
+            <ul>
+                <li><i class="fas fa-undo"></i> 30-day return policy from date of purchase</li>
+                <li><i class="fas fa-check-circle"></i> Items must be unused and in original packaging</li>
+                <li><i class="fas fa-dollar-sign"></i> Return shipping fee may apply</li>
+                <li><i class="fas fa-exchange-alt"></i> Exchanges available for different sizes/colors</li>
+            </ul>
+        </div>
+
+        <div class="tab-content" id="reviews-tab">
+            <div class="reviews-section" id="reviews">
+                <div class="reviews-header">
+                    <h3>Customer Reviews</h3>
+                    <button class="btn-secondary" onclick="writeReview()">Write a Review</button>
+                </div>
+                
+                <div class="reviews-summary">
+                    <div class="average-rating">4.5</div>
+                    <div class="rating-bars">
+                        <div class="rating-bar">
+                            <span class="rating-bar-label">5★</span>
+                            <div class="rating-bar-track">
+                                <div class="rating-bar-fill" style="width: 60%;"></div>
+                            </div>
+                            <span>60%</span>
+                        </div>
+                        <div class="rating-bar">
+                            <span class="rating-bar-label">4★</span>
+                            <div class="rating-bar-track">
+                                <div class="rating-bar-fill" style="width: 25%;"></div>
+                            </div>
+                            <span>25%</span>
+                        </div>
+                        <div class="rating-bar">
+                            <span class="rating-bar-label">3★</span>
+                            <div class="rating-bar-track">
+                                <div class="rating-bar-fill" style="width: 10%;"></div>
+                            </div>
+                            <span>10%</span>
+                        </div>
+                        <div class="rating-bar">
+                            <span class="rating-bar-label">2★</span>
+                            <div class="rating-bar-track">
+                                <div class="rating-bar-fill" style="width: 3%;"></div>
+                            </div>
+                            <span>3%</span>
+                        </div>
+                        <div class="rating-bar">
+                            <span class="rating-bar-label">1★</span>
+                            <div class="rating-bar-track">
+                                <div class="rating-bar-fill" style="width: 2%;"></div>
+                            </div>
+                            <span>2%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="review-item">
+                    <div class="review-header">
+                        <div class="reviewer-info">
+                            <div class="reviewer-avatar">JD</div>
+                            <div>
+                                <div class="reviewer-name">John Doe</div>
+                                <div class="review-date">2 weeks ago</div>
+                            </div>
+                        </div>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <div class="review-content">
+                        <p>Excellent quality polo shirt! The fabric feels premium and the fit is perfect. I've washed it several times and it still looks brand new. Highly recommend!</p>
+                    </div>
+                </div>
+
+                <div class="review-item">
+                    <div class="review-header">
+                        <div class="reviewer-info">
+                            <div class="reviewer-avatar">SM</div>
+                            <div>
+                                <div class="reviewer-name">Sarah Miller</div>
+                                <div class="review-date">1 month ago</div>
+                            </div>
+                        </div>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                    </div>
+                    <div class="review-content">
+                        <p>Great polo shirt for the price. The color is exactly as shown in the pictures. Sizing is accurate - I ordered my usual size M and it fits perfectly. Will definitely order more colors!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Size Chart Modal -->
+    <div class="modal" id="size-chart-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Size Guide</h2>
+                <button class="modal-close" onclick="closeSizeChart()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <table class="size-chart">
+                <thead>
+                    <tr>
+                        <th>Size</th>
+                        <th>Chest (in)</th>
+                        <th>Waist (in)</th>
+                        <th>Length (in)</th>
+                        <th>Recommended Height</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>XS</td>
+                        <td>32-34</td>
+                        <td>26-28</td>
+                        <td>26-27</td>
+                        <td>5'5" - 5'7"</td>
+                    </tr>
+                    <tr>
+                        <td>S</td>
+                        <td>35-37</td>
+                        <td>29-31</td>
+                        <td>28-29</td>
+                        <td>5'7" - 5'9"</td>
+                    </tr>
+                    <tr>
+                        <td>M</td>
+                        <td>38-40</td>
+                        <td>32-34</td>
+                        <td>30-31</td>
+                        <td>5'9" - 5'11"</td>
+                    </tr>
+                    <tr>
+                        <td>L</td>
+                        <td>41-43</td>
+                        <td>35-37</td>
+                        <td>32-33</td>
+                        <td>5'11" - 6'1"</td>
+                    </tr>
+                    <tr>
+                        <td>XL</td>
+                        <td>44-46</td>
+                        <td>38-40</td>
+                        <td>34-35</td>
+                        <td>6'1" - 6'3"</td>
+                    </tr>
+                    <tr>
+                        <td>XXL</td>
+                        <td>47-49</td>
+                        <td>41-43</td>
+                        <td>36-37</td>
+                        <td>6'3" - 6'5"</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Premium Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>GOLAOWN</h3>
+                    <p>The pinnacle of luxury fashion, where exceptional quality meets contemporary design. Experience fashion that transcends expectations.</p>
+                    <div class="social-links" style="margin-top: 20px;">
+                        <a href="#" target="_blank" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" target="_blank" class="social-link" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                        <a href="https://www.instagram.com/gola_own" target="_blank" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <div class="footer-links">
+                        <a href="shop.html">Shop Collection</a>
+                        <a href="about.html">About Us</a>
+                        <a href="contact.html">Contact</a>
+                        <a href="returns.html">Returns</a>
+                        <a href="track-order.html">Track Order</a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <div class="footer-links">
+                        <a href="tel:+18324030393"><i class="fas fa-phone"></i> +1 832 403 0393</a>
+                        <a href="tel:+14452562355"><i class="fas fa-phone"></i> +1 445 256 2355</a>
+                        <a href="mailto:support@golaown.com"><i class="fas fa-envelope"></i> support@golaown.com</a>
+                        <a href="https://wa.me/18324030393" target="_blank" style="color: #25D366; font-weight: 600;"><i class="fab fa-whatsapp"></i> Chat on WhatsApp</a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Secure Payments</h3>
+                    <p style="font-size: 0.8rem; margin-bottom: 15px;">Secure checkout with major providers.</p>
+                    <div class="payment-methods-premium" style="display: flex; gap: 15px; font-size: 1.5rem; color: var(--white); opacity: 0.8;">
+                        <i class="fab fa-cc-visa" title="Visa"></i>
+                        <i class="fab fa-cc-mastercard" title="Mastercard"></i>
+                        <i class="fab fa-paypal" title="PayPal"></i>
+                        <i class="fab fa-apple-pay" title="Apple Pay"></i>
+                        <i class="fab fa-google-pay" title="Google Pay"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom" style="display: flex; flex-direction: column; align-items: center; gap: 15px; margin-top: 40px; border-top: 1px solid var(--premium-border); padding-top: 20px;">
+                <p>&copy; 2026 GOLAOWN. All rights reserved. | Luxury Streetwear Collection</p>
+            </div>
+        </div>
+    </footer>
+    
+    
+
+    <script src="api-client.js"></script>
+    <script>
+        // State
+        let product = null;
+        let selectedSize = 'M';
+        let selectedColor = 'Black';
+        let quantity = 1;
+        let currentImageIndex = 0;
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', async () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const productId = urlParams.get('id') || 1;
+            
+            try {
+                const res = await window.api.getProduct(productId);
+                if (res.success) {
+                    product = res.data;
+                    renderProductData();
+                } else {
+                    window.api.showNotification('Product not found', 'error');
+                }
+            } catch (err) {
+                console.error('Error loading product:', err);
+            }
+            
+            updateCartCount();
+        });
+
+        function renderProductData() {
+            if (!product) return;
+            
+            document.title = `${product.name} - GOLAOWN`;
+            document.querySelector('.product-name').textContent = product.name;
+            const breadcrumbName = document.querySelector('.product-name-breadcrumb');
+            if (breadcrumbName) breadcrumbName.textContent = product.name;
+            document.querySelector('.current-price').textContent = window.api.formatPrice(product.price);
+            document.querySelector('.product-brand').textContent = 'GOLAOWN';
+            
+            const mainImg = document.getElementById('main-image');
+            const imageUrl = product.image_url ? product.image_url : (product.image ? './assets/images/' + product.image : 'assets/images/placeholder.jpg');
+            mainImg.src = imageUrl;
+            mainImg.onerror = function() { this.src = 'assets/images/placeholder.jpg'; };
+            
+            // Render thumbnails
+            const thumbContainer = document.querySelector('.thumbnail-container');
+            const thumbUrl = product.image_url ? product.image_url : (product.image ? './assets/images/' + product.image : 'assets/images/placeholder.jpg');
+            thumbContainer.innerHTML = `
+                <img src="${thumbUrl}" class="thumbnail active" onclick="changeImage(0)" onerror="this.src='assets/images/placeholder.jpg'">
+            `;
+        }
+
+        // Image gallery functions
+        function changeImage(index) {
+            currentImageIndex = index;
+            // Simplified for now
+            const mainImage = document.getElementById('main-image');
+            const thumbnails = document.querySelectorAll('.thumbnail');
+            
+            thumbnails.forEach((thumb, i) => {
+                thumb.classList.toggle('active', i === index);
+            });
+        }
+
+        function toggleZoom() {
+            const mainImage = document.getElementById('main-image');
+            if (mainImage.style.transform === 'scale(2)') {
+                mainImage.style.transform = 'scale(1)';
+                mainImage.style.cursor = 'zoom-in';
+            } else {
+                mainImage.style.transform = 'scale(2)';
+                mainImage.style.cursor = 'zoom-out';
+            }
+        }
+
+        // Product selection functions
+        function selectSize(size) {
+            selectedSize = size;
+            const sizeOptions = document.querySelectorAll('.size-option');
+            sizeOptions.forEach(option => {
+                option.classList.remove('selected');
+                if (option.textContent === size) {
+                    option.classList.add('selected');
+                }
+            });
+        }
+
+        function selectColor(color) {
+            selectedColor = color;
+            const colorOptions = document.querySelectorAll('.color-option');
+            colorOptions.forEach(option => {
+                option.classList.remove('selected');
+            });
+            event.target.classList.add('selected');
+        }
+
+        function updateQuantity(change) {
+            const input = document.querySelector('.quantity-input');
+            const newValue = parseInt(input.value) + change;
+            
+            if (newValue >= 1 && newValue <= 10) {
+                quantity = newValue;
+                input.value = quantity;
+            }
+        }
+
+        function validateQuantity() {
+            const input = document.querySelector('.quantity-input');
+            const value = parseInt(input.value);
+            
+            if (value < 1) {
+                quantity = 1;
+                input.value = 1;
+            } else if (value > 10) {
+                quantity = 10;
+                input.value = 10;
+            } else {
+                quantity = value;
+            }
+        }
+
+        // Tab switching
+        function switchTab(tabName) {
+            const tabButtons = document.querySelectorAll('.tab-btn');
+            tabButtons.forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.textContent.toLowerCase().includes(tabName)) {
+                    btn.classList.add('active');
+                }
+            });
+
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(content => {
+                content.classList.remove('active');
+            });
+            const targetTab = document.getElementById(`${tabName}-tab`);
+            if(targetTab) targetTab.classList.add('active');
+        }
+
+        // Modal functions
+        function openSizeChart(event) {
+            if(event) event.preventDefault();
+            document.getElementById('size-chart-modal').classList.add('active');
+        }
+
+        function closeSizeChart() {
+            document.getElementById('size-chart-modal').classList.remove('active');
+        }
+
+        // Product actions
+        async function addToCart() {
+            if (!product) return;
+            
+            const res = await window.api.addToCart(product, quantity, selectedSize);
+            if (res.success) {
+                window.api.showNotification(`${product.name} added to cart!`, 'success');
+                updateCartCount();
+            } else {
+                window.api.showNotification(res.error || 'Failed to add to cart', 'error');
+            }
+        }
+
+        function addToWishlist() {
+            window.api.showNotification(`${product.name} added to wishlist!`, 'success');
+        }
+
+        function updateCartCount() {
+            window.api.refreshCartCount();
+        }
+
+    </script>
+    <a href="https://wa.me/18324030393" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+</body>
+</html>

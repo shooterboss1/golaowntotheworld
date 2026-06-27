@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${p.title} - GOLAOWN</title>
+    <meta name="description" content="Discover luxury fashion at GOLAOWN. Shop our curated collection of premium clothing, accessories, and exclusive designs.">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .page-header { padding: 8rem 0 4rem; text-align: center; background: #0a0a0a; color: white; margin-bottom: 4rem; }
+        .page-title { font-size: 3rem; font-weight: 800; margin-bottom: 1rem; letter-spacing: -1px;}
+        .page-content { max-width: 800px; margin: 0 auto 5rem; padding: 0 2rem; font-size: 1.1rem; line-height: 1.8; color: #444; min-height: 300px; }
+        .page-content h2 { color: #000; margin-top: 2.5rem; margin-bottom: 1rem; font-weight: 700; }
+        .page-content p { margin-bottom: 1.5rem; color: #555; }
+    </style>
+</head>
+<body>
+    <!-- Premium Header -->
+    <header class="header">
+        <div class="header-container">
+            <a href="index.html" class="logo" style="display: flex; align-items: center; gap: 10px;">
+                <img src="./assets/images/Logo.jpeg" alt="GOLAOWN Logo" style="width: 40px; height: 40px; border-radius: 8px;">
+                GOLAOWN
+            </a>
+            
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="shop.html" class="nav-link">Shop</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </nav>
+            
+            <div class="nav-actions">
+                <div class="header-socials" style="display: flex; gap: 10px; margin-right: 15px; border-right: 1px solid var(--premium-border); padding-right: 15px;">
+                    <a href="https://www.instagram.com/gola_own" target="_blank" class="social-link" style="width: 30px; height: 30px; font-size: 0.9rem;"><i class="fab fa-instagram"></i></a>
+                    <a href="#" target="_blank" class="social-link" style="width: 30px; height: 30px; font-size: 0.9rem;"><i class="fab fa-tiktok"></i></a>
+                    <a href="#" target="_blank" class="social-link" style="width: 30px; height: 30px; font-size: 0.9rem;"><i class="fab fa-facebook-f"></i></a>
+                </div>
+                <button class="btn btn-ghost btn-sm" onclick="openSearch()">
+                    <i class="fas fa-search"></i>
+                </button>
+                <button class="btn btn-ghost btn-sm" onclick="openAccount()">
+                    <i class="fas fa-user"></i>
+                </button>
+                <button class="btn btn-primary btn-sm" onclick="openCart()">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span id="cart-count">0</span>
+                </button>
+            </div>
+            
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <div class="page-header">
+        <div class="container">
+            <h1 class="page-title">${p.h1}</h1>
+        </div>
+    </div>
+
+    <main class="page-content">
+        ${p.content}
+    </main>
+
+    <!-- Premium Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>GOLAOWN</h3>
+                    <p>The pinnacle of luxury fashion, where exceptional quality meets contemporary design. Experience fashion that transcends expectations.</p>
+                    <div class="social-links" style="margin-top: 20px;">
+                        <a href="#" target="_blank" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" target="_blank" class="social-link" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                        <a href="https://www.instagram.com/gola_own" target="_blank" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <div class="footer-links">
+                        <a href="shop.html">Shop Collection</a>
+                        <a href="about.html">About Us</a>
+                        <a href="contact.html">Contact</a>
+                        <a href="returns.html">Returns</a>
+                        <a href="track-order.html">Track Order</a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <div class="footer-links">
+                        <a href="tel:+18324030393"><i class="fas fa-phone"></i> +1 832 403 0393</a>
+                        <a href="tel:+14452562355"><i class="fas fa-phone"></i> +1 445 256 2355</a>
+                        <a href="mailto:support@golaown.com"><i class="fas fa-envelope"></i> support@golaown.com</a>
+                        <a href="https://wa.me/18324030393" target="_blank" style="color: #25D366; font-weight: 600;"><i class="fab fa-whatsapp"></i> Chat on WhatsApp</a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Secure Payments</h3>
+                    <p style="font-size: 0.8rem; margin-bottom: 15px;">Secure checkout with major providers.</p>
+                    <div class="payment-methods-premium" style="display: flex; gap: 15px; font-size: 1.5rem; color: var(--white); opacity: 0.8;">
+                        <i class="fab fa-cc-visa" title="Visa"></i>
+                        <i class="fab fa-cc-mastercard" title="Mastercard"></i>
+                        <i class="fab fa-paypal" title="PayPal"></i>
+                        <i class="fab fa-apple-pay" title="Apple Pay"></i>
+                        <i class="fab fa-google-pay" title="Google Pay"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom" style="display: flex; flex-direction: column; align-items: center; gap: 15px; margin-top: 40px; border-top: 1px solid var(--premium-border); padding-top: 20px;">
+                <p>&copy; 2026 GOLAOWN. All rights reserved. | Luxury Streetwear Collection</p>
+            </div>
+        </div>
+    </footer>
+    
+    
+
+    <script src="api-client.js"></script>
+    <script>
+        // Update cart count
+        function updateCartCount() {
+            const cartCount = document.getElementById('cart-count');
+            if (cartCount) {
+                const count = localStorage.getItem('cartCount') || '0';
+                cartCount.textContent = count;
+            }
+        }
+        
+        // Navigation functions
+        function openSearch() {
+            window.location.href = 'search.html';
+        }
+
+        function openAccount() {
+            window.location.href = 'account.html';
+        }
+
+        function openCart() {
+            window.location.href = 'cart.html';
+        }
+
+        function toggleMobileMenu() {
+            const nav = document.querySelector('.nav-menu');
+            if (nav.style.display === 'flex' && nav.style.flexDirection === 'column') {
+                nav.style.display = '';
+                nav.style.flexDirection = '';
+                nav.style.position = '';
+                nav.style.background = '';
+                nav.style.padding = '';
+                nav.style.boxShadow = '';
+                nav.style.zIndex = '';
+            } else {
+                nav.style.display = 'flex';
+                nav.style.flexDirection = 'column';
+                nav.style.position = 'absolute';
+                nav.style.top = '100%';
+                nav.style.left = '0';
+                nav.style.right = '0';
+                nav.style.background = 'white';
+                nav.style.padding = '20px';
+                nav.style.boxShadow = '0 10px 20px rgba(0,0,0,0.1)';
+                nav.style.zIndex = '1000';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            updateCartCount();
+        });
+
+        // Add scroll effect to header
+        let lastScroll = 0;
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+                header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.boxShadow = 'none';
+            }
+            
+            lastScroll = currentScroll;
+        });
+    </script>
+    <a href="https://wa.me/18324030393" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+</body>
+</html>

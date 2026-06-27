@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Checkout - GOLAOWN</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://js.stripe.com/v3/"></script>
+</head>
+<body>
+    <!-- Premium Header -->
+    <header class="header">
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <img src="./assets/images/Logo.jpeg" alt="GOLAOWN Logo" class="logo-img">
+                <span class="logo-text">GOLA<span class="text-gold">OWN</span></span>
+            </a>
+            <div class="header-actions">
+                <span class="secure-label" style="font-weight: 600; font-size: 0.8rem; letter-spacing: 0.1em; color: var(--secondary-gray);"><i class="fas fa-lock"></i> SECURE CHECKOUT</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="checkout-container mt-4">
+        <div class="checkout-grid">
+            <div class="checkout-main">
+                <form id="checkout-form">
+                    <section class="checkout-section">
+                        <h2>1. Shipping Details</h2>
+                        <div class="form-grid-premium">
+                            <div class="form-group-premium">
+                                <label>First Name</label>
+                                <input type="text" name="firstName" required placeholder="John">
+                            </div>
+                            <div class="form-group-premium">
+                                <label>Last Name</label>
+                                <input type="text" name="lastName" required placeholder="Doe">
+                            </div>
+                            <div class="form-group-premium full">
+                                <label>Email Address</label>
+                                <input type="email" name="email" required placeholder="john@example.com">
+                            </div>
+                            <div class="form-group-premium full">
+                                <label>Address</label>
+                                <input type="text" name="address" required placeholder="123 Luxury Ave">
+                            </div>
+                            <div class="form-group-premium">
+                                <label>City</label>
+                                <input type="text" name="city" required>
+                            </div>
+                            <div class="form-group-premium">
+                                <label>ZIP Code</label>
+                                <input type="text" name="zip" required>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="checkout-section mt-4">
+                        <h2>2. Payment Method</h2>
+                        <div class="payment-selection-premium">
+                            <label class="payment-option-premium">
+                                <input type="radio" name="paymentMethod" value="card" checked>
+                                <div class="option-content">
+                                    <i class="fas fa-credit-card"></i>
+                                    <span>Credit Card</span>
+                                </div>
+                            </label>
+                            <label class="payment-option-premium">
+                                <input type="radio" name="paymentMethod" value="applepay">
+                                <div class="option-content">
+                                    <i class="fab fa-apple-pay"></i>
+                                    <span>Apple Pay</span>
+                                </div>
+                            </label>
+                            <label class="payment-option-premium">
+                                <input type="radio" name="paymentMethod" value="googlepay">
+                                <div class="option-content">
+                                    <i class="fab fa-google-pay"></i>
+                                    <span>Google Pay</span>
+                                </div>
+                            </label>
+                            <label class="payment-option-premium">
+                                <input type="radio" name="paymentMethod" value="paypal">
+                                <div class="option-content">
+                                    <i class="fab fa-paypal"></i>
+                                    <span>PayPal</span>
+                                </div>
+                            </label>
+                        </div>
+
+                        <div id="card-element-container" class="mt-4">
+                            <div id="card-element" style="padding: 15px; border: 1px solid var(--premium-border); border-radius: 8px;">
+                                <!-- Stripe Element -->
+                            </div>
+                            <div id="card-errors" class="text-error mt-4" style="color: #d90000; font-size: 0.9rem;"></div>
+                        </div>
+
+                        <div id="apple-pay-container" class="mt-4" style="display: none;">
+                            <div id="payment-request-button-apple">
+                                <!-- A placeholder for Apple Pay button -->
+                                <button type="button" class="btn btn-primary w-full" style="background: #000; height: 50px; display: flex; align-items: center; justify-content: center; gap: 10px;">
+                                    <i class="fab fa-apple-pay" style="font-size: 2rem;"></i> Pay with Apple Pay
+                                </button>
+                            </div>
+                        </div>
+
+                        <div id="google-pay-container" class="mt-4" style="display: none;">
+                            <div id="payment-request-button-google">
+                                <!-- A placeholder for Google Pay button -->
+                                <button type="button" class="btn btn-primary w-full" style="background: #000; height: 50px; display: flex; align-items: center; justify-content: center; gap: 10px;">
+                                    <i class="fab fa-google-pay" style="font-size: 2rem;"></i> Pay with Google Pay
+                                </button>
+                            </div>
+                        </div>
+                    </section>
+
+                    <button type="submit" id="submit-order" class="btn btn-primary btn-lg w-full mt-4">Complete Purchase</button>
+                </form>
+            </div>
+
+            <div class="checkout-sidebar">
+                <div class="order-summary-card">
+                    <h2>Order Review</h2>
+                    <div id="order-items-list" class="mb-4">
+                        <!-- Items dynamically loaded -->
+                    </div>
+                    <div class="summary-details">
+                        <div class="summary-row">
+                            <span>Subtotal</span>
+                            <span id="subtotal">$0.00</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Shipping</span>
+                            <span id="shipping">$0.00</span>
+                        </div>
+                        <div class="summary-divider"></div>
+                        <div class="summary-row total-row">
+                            <span>Total</span>
+                            <span id="total">$0.00</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://www.paypal.com/sdk/js?client-id=test&currency=USD"></script>
+    <script src="api-client.js"></script>
+    <script>
+        let cartItems = [];
+        let totalAmount = 0;
+        
+        // Initialize Stripe
+        const stripe = Stripe('pk_test_TYooMQauvdEDq54NiTphI7jx'); // Demo key
+        const elements = stripe.elements();
+        const card = elements.create('card', {
+            style: {
+                base: {
+                    fontSize: '16px',
+                    color: '#000',
+                    '::placeholder': { color: '#aab7c4' },
+                },
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', async function() {
+            card.mount('#card-element');
+            await loadCheckout();
+            setupPaymentMethodToggle();
+            setupPayPal();
+            setupDigitalWallets();
+        });
+
+        function setupDigitalWallets() {
+            // Apple Pay Simulation
+            document.getElementById('payment-request-button-apple').addEventListener('click', async () => {
+                const btn = document.getElementById('payment-request-button-apple').querySelector('button');
+                const originalContent = btn.innerHTML;
+                btn.disabled = true;
+                btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing Apple Pay...';
+                
+                setTimeout(async () => {
+                    await finalizeOrder('Apple Pay', 'ap_' + Math.random().toString(36).substr(2, 9));
+                }, 1500);
+            });
+
+            // Google Pay Simulation
+            document.getElementById('payment-request-button-google').addEventListener('click', async () => {
+                const btn = document.getElementById('payment-request-button-google').querySelector('button');
+                const originalContent = btn.innerHTML;
+                btn.disabled = true;
+                btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing Google Pay...';
+                
+                setTimeout(async () => {
+                    await finalizeOrder('Google Pay', 'gp_' + Math.random().toString(36).substr(2, 9));
+                }, 1500);
+            });
+        }
+
+        function setupPaymentMethodToggle() {
+            const options = document.querySelectorAll('input[name="paymentMethod"]');
+            const cardContainer = document.getElementById('card-element-container');
+            const paypalContainer = document.getElementById('paypal-button-container');
+            const appleContainer = document.getElementById('apple-pay-container');
+            const googleContainer = document.getElementById('google-pay-container');
+            const submitBtn = document.getElementById('submit-order');
+
+            options.forEach(opt => {
+                opt.addEventListener('change', (e) => {
+                    // Hide all first
+                    cardContainer.style.display = 'none';
+                    if (paypalContainer) paypalContainer.style.display = 'none';
+                    appleContainer.style.display = 'none';
+                    googleContainer.style.display = 'none';
+                    submitBtn.style.display = 'none';
+
+                    if (e.target.value === 'card') {
+                        cardContainer.style.display = 'block';
+                        submitBtn.style.display = 'block';
+                    } else if (e.target.value === 'paypal') {
+                        if (paypalContainer) paypalContainer.style.display = 'block';
+                    } else if (e.target.value === 'applepay') {
+                        appleContainer.style.display = 'block';
+                    } else if (e.target.value === 'googlepay') {
+                        googleContainer.style.display = 'block';
+                    }
+                });
+            });
+        }
+
+        async function setupPayPal() {
+            // Create container if not exists
+            if (!document.getElementById('paypal-button-container')) {
+                const container = document.createElement('div');
+                container.id = 'paypal-button-container';
+                container.style.display = 'none';
+                container.className = 'mt-4';
+                document.getElementById('card-element-container').parentNode.appendChild(container);
+            }
+
+            paypal.Buttons({
+                createOrder: function(data, actions) {
+                    return actions.order.create({
+                        purchase_units: [{
+                            amount: {
+                                value: totalAmount.toFixed(2)
+                            }
+                        }]
+                    });
+                },
+                onApprove: async function(data, actions) {
+                    const btn = document.getElementById('submit-order');
+                    btn.disabled = true;
+                    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+                    
+                    const captureResult = await window.api.capturePayPalOrder(data.orderID);
+                    if (captureResult.success) {
+                        await finalizeOrder('PayPal', captureResult.transactionId);
+                    } else {
+                        window.api.showNotification('PayPal capture failed', 'error');
+                        btn.disabled = false;
+                    }
+                }
+            }).render('#paypal-button-container');
+        }
+
+        async function loadCheckout() {
+            const result = await window.api.getCart();
+            if (!result.success || result.data.length === 0) {
+                window.location.href = 'cart.html';
+                return;
+            }
+
+            cartItems = result.data;
+            const list = document.getElementById('order-items-list');
+            list.innerHTML = ''; // Clear previous
+            let subtotal = 0;
+
+            cartItems.forEach(item => {
+                const itemTotal = parseFloat(item.price) * item.quantity;
+                subtotal += itemTotal;
+                list.innerHTML += `
+                    <div class="checkout-item-mini" style="display:flex; justify-content:space-between; margin-bottom:10px; font-size:0.9rem;">
+                        <span>${item.name} x${item.quantity}</span>
+                        <span>${window.api.formatPrice(itemTotal)}</span>
+                    </div>
+                `;
+            });
+
+            const shipping = subtotal > 150 ? 0 : 15.00;
+            totalAmount = subtotal + shipping;
+
+            document.getElementById('subtotal').textContent = window.api.formatPrice(subtotal);
+            document.getElementById('shipping').textContent = shipping === 0 ? 'FREE' : window.api.formatPrice(shipping);
+            document.getElementById('total').textContent = window.api.formatPrice(totalAmount);
+        }
+
+        async function finalizeOrder(method, transactionId = null) {
+            const form = document.getElementById('checkout-form');
+            const formData = new FormData(form);
+            
+            const orderData = {
+                firstName: formData.get('firstName'),
+                lastName: formData.get('lastName'),
+                email: formData.get('email'),
+                address: formData.get('address'),
+                city: formData.get('city'),
+                zipCode: formData.get('zip'),
+                paymentMethod: method,
+                transactionId: transactionId,
+                items: cartItems.map(item => ({
+                    productId: item.id,
+                    quantity: item.quantity,
+                    price: item.price,
+                    size: item.size || 'M'
+                })),
+                total: totalAmount
+            };
+
+            const result = await window.api.createOrder(orderData);
+            if (result.success) {
+                window.api.showNotification('Order placed successfully!');
+                
+                // Store order details for success page
+                localStorage.setItem('lastOrder', JSON.stringify({
+                    orderNumber: result.orderNumber,
+                    orderDate: new Date().toISOString(),
+                    total: totalAmount
+                }));
+                
+                // Clear cart
+                localStorage.removeItem('cartItems');
+                
+                setTimeout(() => {
+                    window.location.href = 'order-success.html';
+                }, 1500);
+            } else {
+                window.api.showNotification(result.error || 'Failed to save order', 'error');
+                const btn = document.getElementById('submit-order');
+                btn.disabled = false;
+                btn.textContent = 'Complete Purchase';
+            }
+        }
+
+        document.getElementById('checkout-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const method = document.querySelector('input[name="paymentMethod"]:checked').value;
+            
+            if (method === 'card') {
+                const btn = document.getElementById('submit-order');
+                btn.disabled = true;
+                btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Authorizing...';
+
+                // 1. Create Payment Intent
+                const intentResult = await window.api.createStripePaymentIntent(totalAmount);
+                if (!intentResult.success) {
+                    window.api.showNotification('Payment authorization failed', 'error');
+                    btn.disabled = false;
+                    btn.textContent = 'Complete Purchase';
+                    return;
+                }
+
+                // 2. Confirm Card Payment
+                const stripeResult = await stripe.confirmCardPayment(intentResult.clientSecret, {
+                    payment_method: {
+                        card: card,
+                        billing_details: {
+                            name: document.getElementsByName('firstName')[0].value + ' ' + document.getElementsByName('lastName')[0].value,
+                            email: document.getElementsByName('email')[0].value
+                        }
+                    }
+                });
+
+                if (stripeResult.error) {
+                    document.getElementById('card-errors').textContent = stripeResult.error.message;
+                    btn.disabled = false;
+                    btn.textContent = 'Complete Purchase';
+                } else {
+                    if (stripeResult.paymentIntent.status === 'succeeded') {
+                        await finalizeOrder('Stripe', stripeResult.paymentIntent.id);
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

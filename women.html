@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Women's Collection - GOLAOWN</title>
+    <meta name="description" content="Explore our premium women's fashion collection at GOLAOWN. Discover stylish clothing, accessories, and more.">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Premium Header -->
+    <header class="header">
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <img src="./assets/images/Logo.jpeg" alt="GOLAOWN Logo" class="logo-img">
+                <span class="logo-text">GOLA<span class="text-gold">OWN</span></span>
+            </a>
+
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="shop.html" class="nav-link">Shop</a>
+                <a href="men.html" class="nav-link">Men</a>
+                <a href="women.html" class="nav-link active">Women</a>
+                <a href="search.html" class="nav-link">Search</a>
+            </nav>
+
+            <div class="header-actions">
+                <button class="icon-btn" onclick="openSearch()" aria-label="Search">
+                    <i class="fas fa-search"></i>
+                </button>
+                <button class="icon-btn" onclick="openAccount()" aria-label="Account">
+                    <i class="fas fa-user"></i>
+                </button>
+                <button class="icon-btn cart-btn" onclick="openCart()" aria-label="Cart">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count" id="cart-count">0</span>
+                </button>
+                <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Women's Hero Section -->
+    <section class="hero-dual">
+        <div class="hero-half hero-women" style="flex: 1; height: 100%;">
+            <div class="hero-overlay"></div>
+            <img src="./assets/images/sweat%20suit%20(17).jpg" alt="Women's Elite" class="hero-bg-img" style="object-fit: cover; object-position: center 20%;">
+            <div class="hero-content-dual" style="margin-top: auto; padding-bottom: 60px;">
+                <h2 class="hero-dual-title">WOMEN'S <span class="text-gold">ELITE</span></h2>
+                <p>Elegant Street Style</p>
+                <div class="hero-actions">
+                    <a href="#categories" class="btn btn-white-outline btn-lg">Browse Collection</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Women's Categories -->
+    <section class="section" id="categories">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Shop by Category</h2>
+                <p class="section-subtitle">Find exactly what you're looking for in our women's collection</p>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div class="category-card" onclick="filterByCategory('shorts')">
+                    <div class="category-image-container">
+                        <img src="./assets/images/women-shorts.jpg" alt="Shorts" class="category-image">
+                        <div class="category-overlay">
+                            <h3>Shorts</h3>
+                            <p>Comfort & style</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="category-card" onclick="filterByCategory('polo')">
+                    <div class="category-image-container">
+                        <img src="./assets/images/polo.jpg" alt="Polo Shirts" class="category-image">
+                        <div class="category-overlay">
+                            <h3>Polo Shirts</h3>
+                            <p>Classic elegance</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="category-card" onclick="filterByCategory('sweat suit')">
+                    <div class="category-image-container">
+                        <img src="./assets/images/sweat-suit.jpg" alt="Sweat Suits" class="category-image">
+                        <div class="category-overlay">
+                            <h3>Sweat Suits</h3>
+                            <p>Cozy comfort</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="category-card" onclick="filterByCategory('top and shorts')">
+                    <div class="category-image-container">
+                        <img src="./assets/images/top and shorts.jpg" alt="Sets" class="category-image">
+                        <div class="category-overlay">
+                            <h3>Complete Sets</h3>
+                            <p>Perfect matches</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="category-card" onclick="filterByCategory('cap')">
+                    <div class="category-image-container">
+                        <img src="./assets/images/bucket hat.jpg" alt="Accessories" class="category-image">
+                        <div class="category-overlay">
+                            <h3>Accessories</h3>
+                            <p>Style essentials</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="category-card" onclick="filterByCategory('socks')">
+                    <div class="category-image-container">
+                        <img src="./assets/images/socks.jpg" alt="Socks" class="category-image">
+                        <div class="category-overlay">
+                            <h3>Socks</h3>
+                            <p>Comfort basics</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="category-card" onclick="filterByCategory('streetwear')">
+                    <div class="category-image-container">
+                        <img src="./assets/images/golaown-streetwear.jpg" alt="Streetwear" class="category-image">
+                        <div class="category-overlay">
+                            <h3>Streetwear</h3>
+                            <p>Urban chic</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="category-card" onclick="filterByCategory('all')">
+                    <div class="category-image-container">
+                        <img src="./assets/images/Logo.jpeg" alt="All Items" class="category-image">
+                        <div class="category-overlay">
+                            <h3>All Items</h3>
+                            <p>View everything</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Women's Products -->
+    <section class="section" id="featured">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Featured Women's Items</h2>
+                <p class="section-subtitle">Handpicked pieces from our premium women's collection</p>
+            </div>
+            
+            <div class="product-grid" id="womens-products">
+                <!-- Products will be dynamically loaded -->
+            </div>
+            
+            <div class="text-center">
+                <a href="shop.html?gender=women" class="btn btn-accent btn-lg">View All Women's Products</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Premium Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>GOLAOWN</h3>
+                    <p>The pinnacle of luxury fashion, where exceptional quality meets contemporary design. Experience fashion that transcends expectations.</p>
+                    <div class="social-links" style="margin-top: 20px;">
+                        <a href="#" target="_blank" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" target="_blank" class="social-link" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                        <a href="https://www.instagram.com/gola_own" target="_blank" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <div class="footer-links">
+                        <a href="shop.html">Shop Collection</a>
+                        <a href="about.html">About Us</a>
+                        <a href="contact.html">Contact</a>
+                        <a href="returns.html">Returns</a>
+                        <a href="track-order.html">Track Order</a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <div class="footer-links">
+                        <a href="tel:+18324030393"><i class="fas fa-phone"></i> +1 832 403 0393</a>
+                        <a href="tel:+14452562355"><i class="fas fa-phone"></i> +1 445 256 2355</a>
+                        <a href="mailto:support@golaown.com"><i class="fas fa-envelope"></i> support@golaown.com</a>
+                        <a href="https://wa.me/18324030393" target="_blank" style="color: #25D366; font-weight: 600;"><i class="fab fa-whatsapp"></i> Chat on WhatsApp</a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Secure Payments</h3>
+                    <p style="font-size: 0.8rem; margin-bottom: 15px;">Secure checkout with major providers.</p>
+                    <div class="payment-methods-premium" style="display: flex; gap: 15px; font-size: 1.5rem; color: var(--white); opacity: 0.8;">
+                        <i class="fab fa-cc-visa" title="Visa"></i>
+                        <i class="fab fa-cc-mastercard" title="Mastercard"></i>
+                        <i class="fab fa-paypal" title="PayPal"></i>
+                        <i class="fab fa-apple-pay" title="Apple Pay"></i>
+                        <i class="fab fa-google-pay" title="Google Pay"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom" style="display: flex; flex-direction: column; align-items: center; gap: 15px; margin-top: 40px; border-top: 1px solid var(--premium-border); padding-top: 20px;">
+                <p>&copy; 2026 GOLAOWN. All rights reserved. | Luxury Streetwear Collection</p>
+            </div>
+        </div>
+    </footer>
+    
+    
+
+    <script src="api-client.js"></script>
+    <script>
+        // Load women's products
+        async function loadWomensProducts() {
+            const container = document.getElementById('womens-products');
+            container.innerHTML = '<div class="loading">Loading women\'s collection...</div>';
+            
+            try {
+                const response = await window.api.getProducts({ gender: 'women' });
+                if (!response.success) throw new Error(response.error);
+                
+                const products = response.data.slice(0, 8);
+                container.innerHTML = '';
+                
+                products.forEach((product, index) => {
+                    setTimeout(() => {
+                        const productCard = createProductCard(product);
+                        container.appendChild(productCard);
+                        
+                        setTimeout(() => {
+                            productCard.style.animation = 'fadeInUp 0.6s ease-out';
+                        }, 50);
+                    }, index * 150);
+                });
+            } catch (error) {
+                container.innerHTML = '<div class="error">Failed to load women\'s collection.</div>';
+                console.error(error);
+            }
+        }
+
+        // Create product card
+        function createProductCard(product) {
+            const card = document.createElement('div');
+            card.className = 'product-card';
+            const imageUrl = product.image_url ? product.image_url : (product.image ? './assets/images/' + product.image : 'assets/images/placeholder.jpg');
+            
+            card.innerHTML = `
+                <div class="product-image-container">
+                    <a href="product-detail.html?id=${product.id}">
+                        <img src="${imageUrl}" alt="${product.name}" class="product-image" onerror="this.src='assets/images/placeholder.jpg'">
+                    </a>
+                    <div class="product-overlay">
+                        <button class="overlay-btn" onclick="window.location.href='product-detail.html?id=${product.id}'">
+                            <i class="fas fa-eye"></i> View Details
+                        </button>
+                        <button class="overlay-btn" onclick="addToCart(${product.id})">
+                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <a href="product-detail.html?id=${product.id}" style="text-decoration: none; color: inherit;">
+                        <h3 class="product-name">${product.name}</h3>
+                    </a>
+                    <p class="product-category">${product.category.charAt(0).toUpperCase() + product.category.slice(1)}</p>
+                    <p class="product-price">$${product.price}</p>
+                    <div class="size-selector">
+                        <select class="size-select" id="size-${product.id}">
+                            <option value="S">S</option>
+                            <option value="M" selected>M</option>
+                            <option value="L">L</option>
+                            <option value="XL">XL</option>
+                            <option value="XXL">XXL</option>
+                        </select>
+                    </div>
+                    <div class="product-actions">
+                        <button class="btn-cart" onclick="addToCart(${product.id})">
+                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        </button>
+                        <button class="btn-wishlist" onclick="addToWishlist(${product.id})">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                </div>
+            `;
+            return card;
+        }
+
+        // Filter by category
+        function filterByCategory(category) {
+            window.location.href = `shop.html?gender=women&category=${category}`;
+        }
+
+        // Cart functionality
+        async function addToCart(productId) {
+            try {
+                const sizeSelect = document.getElementById(`size-${productId}`);
+                const selectedSize = sizeSelect ? sizeSelect.value : 'M';
+                
+                const result = await window.api.addToCart(productId, 1, selectedSize);
+                
+                if (result.success) {
+                    window.api.showNotification('Item added to cart successfully!', 'success');
+                    window.api.refreshCartCount();
+                } else {
+                    window.api.showNotification(result.error || 'Failed to add item to cart', 'error');
+                }
+            } catch (error) {
+                window.api.showNotification('Error adding item to cart', 'error');
+            }
+        }
+
+        function addToWishlist(productId) {
+            window.api.showNotification('Added to wishlist!', 'success');
+        }
+
+        function quickView(productId) {
+            window.api.showNotification('Quick view feature coming soon!', 'info');
+        }
+
+        function updateCartCount() {
+            window.api.refreshCartCount();
+        }
+
+        // Navigation functions
+
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            loadWomensProducts();
+            updateCartCount();
+        });
+    </script>
+    <a href="https://wa.me/18324030393" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+</body>
+</html>

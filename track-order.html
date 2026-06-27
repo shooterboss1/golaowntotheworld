@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Track Your Order - GOLAOWN</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="hero-section">
+        <!-- Premium Header -->
+    <header class="header">
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <img src="./assets/images/Logo.jpeg" alt="GOLAOWN Logo" class="logo-img">
+                <span class="logo-text">GOLA<span class="text-gold">OWN</span></span>
+            </a>
+
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="shop.html" class="nav-link">Shop</a>
+                <a href="men.html" class="nav-link">Men</a>
+                <a href="women.html" class="nav-link">Women</a>
+                <a href="search.html" class="nav-link">Search</a>
+            </nav>
+
+            <div class="header-actions">
+                <button class="icon-btn" onclick="openSearch()" aria-label="Search">
+                    <i class="fas fa-search"></i>
+                </button>
+                <button class="icon-btn" onclick="openAccount()" aria-label="Account">
+                    <i class="fas fa-user"></i>
+                </button>
+                <button class="icon-btn cart-btn" onclick="openCart()" aria-label="Cart">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count" id="cart-count">0</span>
+                </button>
+                <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+    </div>
+
+    <div class="track-container">
+        <div class="track-header">
+            <h1>Track Your Order</h1>
+            <p>Enter your order number and email address to track your package</p>
+        </div>
+
+        <div class="track-form-section">
+            <form class="track-form" id="trackForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="order-number">Order Number</label>
+                        <input type="text" id="order-number" name="order-number" required placeholder="e.g., GOLA-12345">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required placeholder="your@email.com">
+                    </div>
+                </div>
+                <button type="submit" class="track-btn">Track Order</button>
+            </form>
+
+            <div class="sample-orders">
+                <h3>Sample Orders for Testing</h3>
+                <div class="sample-list">
+                    <div class="sample-order" onclick="fillSampleOrder('GOLA-12345', 'john@email.com')">
+                        <span><strong>GOLA-12345</strong> - john@email.com</span>
+                        <span class="sample-status">Delivered</span>
+                    </div>
+                    <div class="sample-order" onclick="fillSampleOrder('GOLA-67890', 'sarah@email.com')">
+                        <span><strong>GOLA-67890</strong> - sarah@email.com</span>
+                        <span class="sample-status">In Transit</span>
+                    </div>
+                    <div class="sample-order" onclick="fillSampleOrder('GOLA-24680', 'mike@email.com')">
+                        <span><strong>GOLA-24680</strong> - mike@email.com</span>
+                        <span class="sample-status">Processing</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tracking-results" id="tracking-results" style="display: none;">
+            <div class="tracking-header">
+                <h2 id="order-number-display">Order #GOLA-12345</h2>
+                <div class="order-status">
+                    <span class="status-badge" id="current-status">Delivered</span>
+                </div>
+            </div>
+
+            <div class="tracking-timeline">
+                <div class="timeline-item completed">
+                    <div class="timeline-icon">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>Order Placed</h3>
+                        <p>March 15, 2026 - 2:30 PM</p>
+                        <span>Your order has been received and is being processed</span>
+                    </div>
+                </div>
+
+                <div class="timeline-item completed">
+                    <div class="timeline-icon">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>Order Confirmed</h3>
+                        <p>March 15, 2026 - 3:15 PM</p>
+                        <span>Your order has been confirmed and payment received</span>
+                    </div>
+                </div>
+
+                <div class="timeline-item completed">
+                    <div class="timeline-icon">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>Order Processed</h3>
+                        <p>March 16, 2026 - 10:00 AM</p>
+                        <span>Your order has been processed and is ready for shipment</span>
+                    </div>
+                </div>
+
+                <div class="timeline-item completed">
+                    <div class="timeline-icon">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>Shipped</h3>
+                        <p>March 16, 2026 - 2:45 PM</p>
+                        <span>Your package has been shipped via FedEx</span>
+                        <div class="tracking-number">
+                            <strong>Tracking Number:</strong> FX1234567890
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item completed">
+                    <div class="timeline-icon">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>In Transit</h3>
+                        <p>March 17, 2026 - 9:30 AM</p>
+                        <span>Your package is in transit and on its way to you</span>
+                    </div>
+                </div>
+
+                <div class="timeline-item completed">
+                    <div class="timeline-icon">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>Out for Delivery</h3>
+                        <p>March 18, 2026 - 8:00 AM</p>
+                        <span>Your package is out for delivery today</span>
+                    </div>
+                </div>
+
+                <div class="timeline-item completed">
+                    <div class="timeline-icon">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>Delivered</h3>
+                        <p>March 18, 2026 - 2:15 PM</p>
+                        <span>Your package has been delivered successfully</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="order-details">
+                <h3>Order Details</h3>
+                <div class="details-grid">
+                    <div class="detail-item">
+                        <strong>Order Number:</strong>
+                        <span id="detail-order-number">GOLA-12345</span>
+                    </div>
+                    <div class="detail-item">
+                        <strong>Order Date:</strong>
+                        <span>March 15, 2026</span>
+                    </div>
+                    <div class="detail-item">
+                        <strong>Shipping Method:</strong>
+                        <span>Standard Shipping (5-7 business days)</span>
+                    </div>
+                    <div class="detail-item">
+                        <strong>Estimated Delivery:</strong>
+                        <span>March 18, 2026</span>
+                    </div>
+                </div>
+
+                <div class="order-items">
+                    <h4>Items in this Order</h4>
+                    <div class="items-list">
+                        <div class="order-item">
+                            <img src="assets/images/polo-collars.jpg" alt="Polo Collars">
+                            <div class="item-info">
+                                <h5>Polo Collars</h5>
+                                <p>Size: M | Color: Navy</p>
+                                <p>Quantity: 1</p>
+                            </div>
+                            <div class="item-price">$35.00</div>
+                        </div>
+                        <div class="order-item">
+                            <img src="assets/images/women-shorts.jpg" alt="Women Shorts">
+                            <div class="item-info">
+                                <h5>Women Shorts</h5>
+                                <p>Size: S | Color: Black</p>
+                                <p>Quantity: 2</p>
+                            </div>
+                            <div class="item-price">$40.00</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="shipping-address">
+                    <h4>Shipping Address</h4>
+                    <div class="address-info">
+                        <p id="customer-name">John Doe</p>
+                        <p id="customer-address">123 Main Street</p>
+                        <p id="customer-city">New York, NY 10001</p>
+                        <p id="customer-country">United States</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tracking-actions">
+                <button class="btn-secondary" onclick="printTracking()">
+                    <i class="fas fa-print"></i> Print Tracking
+                </button>
+                <button class="btn-primary" onclick="contactSupport()">
+                    <i class="fas fa-headset"></i> Contact Support
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Premium Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>GOLAOWN</h3>
+                    <p>The pinnacle of luxury fashion, where exceptional quality meets contemporary design. Experience fashion that transcends expectations.</p>
+                    <div class="social-links" style="margin-top: 20px;">
+                        <a href="#" target="_blank" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" target="_blank" class="social-link" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                        <a href="https://www.instagram.com/gola_own" target="_blank" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <div class="footer-links">
+                        <a href="shop.html">Shop Collection</a>
+                        <a href="about.html">About Us</a>
+                        <a href="contact.html">Contact</a>
+                        <a href="returns.html">Returns</a>
+                        <a href="track-order.html">Track Order</a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <div class="footer-links">
+                        <a href="tel:+18324030393"><i class="fas fa-phone"></i> +1 832 403 0393</a>
+                        <a href="tel:+14452562355"><i class="fas fa-phone"></i> +1 445 256 2355</a>
+                        <a href="mailto:support@golaown.com"><i class="fas fa-envelope"></i> support@golaown.com</a>
+                        <a href="https://wa.me/18324030393" target="_blank" style="color: #25D366; font-weight: 600;"><i class="fab fa-whatsapp"></i> Chat on WhatsApp</a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Secure Payments</h3>
+                    <p style="font-size: 0.8rem; margin-bottom: 15px;">Secure checkout with major providers.</p>
+                    <div class="payment-methods-premium" style="display: flex; gap: 15px; font-size: 1.5rem; color: var(--white); opacity: 0.8;">
+                        <i class="fab fa-cc-visa" title="Visa"></i>
+                        <i class="fab fa-cc-mastercard" title="Mastercard"></i>
+                        <i class="fab fa-paypal" title="PayPal"></i>
+                        <i class="fab fa-apple-pay" title="Apple Pay"></i>
+                        <i class="fab fa-google-pay" title="Google Pay"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom" style="display: flex; flex-direction: column; align-items: center; gap: 15px; margin-top: 40px; border-top: 1px solid var(--premium-border); padding-top: 20px;">
+                <p>&copy; 2026 GOLAOWN. All rights reserved. | Luxury Streetwear Collection</p>
+            </div>
+        </div>
+    </footer>
+    
+    
+
+    <script src="api-client.js"></script>
+    <script>
+        // Form submission
+        document.getElementById('trackForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const orderNumber = document.getElementById('order-number').value.toUpperCase().trim();
+            const email = document.getElementById('email').value.toLowerCase().trim();
+            
+            trackOrder(orderNumber, email);
+        });
+
+        async function trackOrder(orderNumber, email) {
+            const trackBtn = document.querySelector('.track-btn');
+            const originalText = trackBtn.textContent;
+            trackBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Tracking...';
+            trackBtn.disabled = true;
+
+            try {
+                const result = await window.api.trackOrder(orderNumber);
+                
+                if (result.success) {
+                    const order = result.data;
+                    // Validate email matches
+                    if (order.email.toLowerCase().trim() === email) {
+                        displayTrackingInfo(orderNumber, order);
+                    } else {
+                        window.api.showNotification('Email address does not match our records for this order.', 'error');
+                        trackBtn.innerHTML = originalText;
+                        trackBtn.disabled = false;
+                    }
+                } else {
+                    window.api.showNotification(result.error || 'Order not found. Please check your order number.', 'error');
+                    trackBtn.innerHTML = originalText;
+                    trackBtn.disabled = false;
+                }
+            } catch (error) {
+                console.error("Tracking error:", error);
+                window.api.showNotification('Error tracking order. Please try again later.', 'error');
+                trackBtn.innerHTML = originalText;
+                trackBtn.disabled = false;
+            }
+        }
+
+        function displayTrackingInfo(orderNumber, order) {
+            // Hide form section and show results
+            document.querySelector('.track-form-section').style.display = 'none';
+            document.getElementById('tracking-results').style.display = 'block';
+            
+            // Update order information
+            document.getElementById('order-number-display').textContent = `Order #${orderNumber}`;
+            document.getElementById('current-status').textContent = order.status || 'Processing';
+            document.getElementById('detail-order-number').textContent = orderNumber;
+            
+            // Update status badge
+            const statusBadge = document.getElementById('current-status');
+            statusBadge.className = 'status-badge';
+            const status = (order.status || 'Processing').toLowerCase();
+            
+            if (status === 'delivered') {
+                statusBadge.style.background = '#000';
+                statusBadge.style.color = '#fff';
+            } else if (status === 'shipped' || status === 'in transit') {
+                statusBadge.style.background = '#333';
+                statusBadge.style.color = '#fff';
+            } else {
+                statusBadge.style.background = '#f0f0f0';
+                statusBadge.style.color = '#000';
+            }
+            
+            // Update customer information
+            document.getElementById('customer-name').textContent = `${order.firstName} ${order.lastName}`;
+            document.getElementById('customer-address').textContent = order.address;
+            document.getElementById('customer-city').textContent = `${order.city}, ${order.state} ${order.zipCode}`;
+            document.getElementById('customer-country').textContent = 'United States';
+            
+            // Update timeline
+            generateTimeline(order.status || 'Processing');
+            
+            // Update order items
+            updateOrderItems(order.items || []);
+        }
+
+        function generateTimeline(currentStatus) {
+            const stages = [
+                { id: 'placed', label: 'Order Placed', icon: 'fa-file-invoice' },
+                { id: 'processing', label: 'Processing', icon: 'fa-cog' },
+                { id: 'shipped', label: 'Shipped', icon: 'fa-box' },
+                { id: 'delivered', label: 'Delivered', icon: 'fa-check-circle' }
+            ];
+
+            const statusLower = currentStatus.toLowerCase();
+            let activeIndex = 0;
+            if (statusLower.includes('processing')) activeIndex = 1;
+            if (statusLower.includes('shipped') || statusLower.includes('transit')) activeIndex = 2;
+            if (statusLower.includes('delivered')) activeIndex = 3;
+
+            const timelineContainer = document.querySelector('.tracking-timeline');
+            timelineContainer.innerHTML = '';
+            
+            stages.forEach((stage, index) => {
+                const isCompleted = index <= activeIndex;
+                const timelineItem = document.createElement('div');
+                timelineItem.className = `timeline-item ${isCompleted ? 'completed' : 'pending'}`;
+                
+                timelineItem.innerHTML = `
+                    <div class="timeline-icon">
+                        <i class="fas ${stage.icon}"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>${stage.label}</h3>
+                        <p>${isCompleted ? 'Completed' : 'Upcoming'}</p>
+                        <span>${isCompleted ? 'Your order has reached this stage.' : 'Waiting for this step...'}</span>
+                    </div>
+                `;
+                
+                timelineContainer.appendChild(timelineItem);
+            });
+        }
+
+        function updateOrderItems(items) {
+            const itemsList = document.querySelector('.items-list');
+            itemsList.innerHTML = '';
+            
+            if (items.length === 0) {
+                itemsList.innerHTML = '<p>No items found in this order.</p>';
+                return;
+            }
+
+            items.forEach(item => {
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'order-item';
+                itemDiv.innerHTML = `
+                    <img src="${item.image_url ? item.image_url : 'assets/images/' + item.image}" alt="${item.name}" onerror="this.src='assets/images/hero_bg.png'">
+                    <div class="item-info">
+                        <h5>${item.name}</h5>
+                        <p>Size: ${item.size || 'M'} | Quantity: ${item.quantity || 1}</p>
+                    </div>
+                    <div class="item-price">${window.api.formatPrice(item.price * item.quantity)}</div>
+                `;
+                itemsList.appendChild(itemDiv);
+            });
+        }
+
+        function fillSampleOrder(orderNumber, email) {
+            document.getElementById('order-number').value = orderNumber;
+            document.getElementById('email').value = email;
+        }
+
+        function printTracking() {
+            window.print();
+        }
+
+        function contactSupport() {
+            window.location.href = 'contact.html';
+        }
+
+        // Check for order in URL parameter
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const orderNumber = urlParams.get('order');
+            
+            if (orderNumber) {
+                document.getElementById('order-number').value = orderNumber;
+                // We don't have the email in the URL for security, so the user still needs to enter it
+                // unless we find a way to pre-fill it (not recommended for public links)
+                window.api.showNotification('Please enter your email to verify and track your order.', 'info');
+            }
+            
+            if (window.api) {
+                window.api.refreshCartCount();
+            }
+        });
+    </script>
+    <a href="https://wa.me/18324030393" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+</body>
+</html>

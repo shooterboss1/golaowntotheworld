@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop Premium Collection - GOLAOWN</title>
+    <meta name="description" content="Explore GOLAOWN's premium fashion collection. Luxury clothing, accessories, and exclusive designs.">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="premium-theme">
+    <!-- Premium Navigation -->
+    <header class="header">
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <img src="./assets/images/Logo.jpeg" alt="GOLAOWN Logo" class="logo-img">
+                <span class="logo-text">GOLA<span class="text-gold">OWN</span></span>
+            </a>
+
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="shop.html" class="nav-link active">Shop</a>
+                <a href="men.html" class="nav-link">Men</a>
+                <a href="women.html" class="nav-link">Women</a>
+                <a href="search.html" class="nav-link">Search</a>
+            </nav>
+
+            <div class="header-actions">
+                <button class="icon-btn" onclick="openSearch()" aria-label="Search">
+                    <i class="fas fa-search"></i>
+                </button>
+                <button class="icon-btn" onclick="openAccount()" aria-label="Account">
+                    <i class="fas fa-user"></i>
+                </button>
+                <button class="icon-btn cart-btn" onclick="openCart()" aria-label="Cart">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count" id="cart-count">0</span>
+                </button>
+                <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Shop Hero Section -->
+    <section class="shop-hero">
+        <div class="container">
+            <div class="shop-hero-content">
+                <h1>Premium Collection</h1>
+                <p>Discover our curated selection of luxury fashion pieces</p>
+                <div class="shop-stats">
+                    <div class="stat-item">
+                        <span class="stat-number" id="total-products">120</span>
+                        <span class="stat-label">Products</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">7</span>
+                        <span class="stat-label">Categories</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">100%</span>
+                        <span class="stat-label">Premium</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Shop Content -->
+    <section class="shop-content">
+        <div class="container">
+            <div class="shop-layout">
+                <!-- Advanced Filters Sidebar -->
+                <aside class="shop-sidebar">
+                    <div class="filter-section">
+                        <h3>Gender</h3>
+                        <div class="filter-options">
+                            <label class="filter-option">
+                                <input type="radio" name="gender" value="all" checked onchange="filterProducts()">
+                                <span>All Genders</span>
+                            </label>
+                            <label class="filter-option">
+                                <input type="radio" name="gender" value="men" onchange="filterProducts()">
+                                <span>Men</span>
+                            </label>
+                            <label class="filter-option">
+                                <input type="radio" name="gender" value="women" onchange="filterProducts()">
+                                <span>Women</span>
+                            </label>
+                            <label class="filter-option">
+                                <input type="radio" name="gender" value="unisex" onchange="filterProducts()">
+                                <span>Unisex</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="filter-section">
+                        <h3>Categories</h3>
+                                                <div class="filter-options">
+                            <label class="filter-option">
+                                <input type="radio" name="category" value="all" checked onchange="filterProducts()">
+                                <span>All Collections</span>
+                            </label>
+                            <label class="filter-option">
+                                <input type="radio" name="category" value="sweat suit" onchange="filterProducts()">
+                                <span>Sweat Suits</span>
+                            </label>
+                            <label class="filter-option">
+                                <input type="radio" name="category" value="top and shorts" onchange="filterProducts()">
+                                <span>Top and Shorts</span>
+                            </label>
+                            <label class="filter-option">
+                                <input type="radio" name="category" value="women shorts" onchange="filterProducts()">
+                                <span>Women Shorts</span>
+                            </label>
+                            <label class="filter-option">
+                                <input type="radio" name="category" value="cap" onchange="filterProducts()">
+                                <span>Bucket Hats</span>
+                            </label>
+                            <label class="filter-option">
+                                <input type="radio" name="category" value="musle arm" onchange="filterProducts()">
+                                <span>Muscle Arm</span>
+                            </label>
+                            <label class="filter-option">
+                                <input type="radio" name="category" value="frisch shorts" onchange="filterProducts()">
+                                <span>Frisch Shorts</span>
+                            </label>
+                            <label class="filter-option">
+                                <input type="radio" name="category" value="regular" onchange="filterProducts()">
+                                <span>Regulars</span>
+                            </label>
+                            <label class="filter-option">
+                                <input type="radio" name="category" value="socks" onchange="filterProducts()">
+                                <span>Socks</span>
+                            </label>
+                        </div></div>
+                    </div>
+
+                    <div class="filter-section">
+                        <h3>Price Range</h3>
+                        <div class="price-range">
+                            <input type="range" id="price-range" min="10" max="75" value="75" oninput="updatePriceFilter()">
+                            <div class="price-display">
+                                <span>$10</span>
+                                <span id="price-value">$75</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="filter-section">
+                        <h3>Size</h3>
+                        <div class="size-filters">
+                            <label class="size-option">
+                                <input type="checkbox" value="XS" onchange="filterProducts()">
+                                <span>XS</span>
+                            </label>
+                            <label class="size-option">
+                                <input type="checkbox" value="S" onchange="filterProducts()">
+                                <span>S</span>
+                            </label>
+                            <label class="size-option">
+                                <input type="checkbox" value="M" onchange="filterProducts()">
+                                <span>M</span>
+                            </label>
+                            <label class="size-option">
+                                <input type="checkbox" value="L" onchange="filterProducts()">
+                                <span>L</span>
+                            </label>
+                            <label class="size-option">
+                                <input type="checkbox" value="XL" onchange="filterProducts()">
+                                <span>XL</span>
+                            </label>
+                            <label class="size-option">
+                                <input type="checkbox" value="XXL" onchange="filterProducts()">
+                                <span>XXL</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="filter-section">
+                        <h3>Sort By</h3>
+                        <select id="sort-by" onchange="sortProducts()" class="sort-select">
+                            <option value="featured">Featured</option>
+                            <option value="price-low">Price: Low to High</option>
+                            <option value="price-high">Price: High to Low</option>
+                            <option value="name">Name: A to Z</option>
+                            <option value="newest">Newest First</option>
+                        </select>
+                    </div>
+
+                    <button class="btn btn-outline" onclick="clearFilters()">Clear All Filters</button>
+                </aside>
+
+                <!-- Main Shop Area -->
+                <main class="shop-main">
+                    <!-- Shop Controls -->
+                    <div class="shop-controls">
+                        <div class="results-info">
+                            <span id="results-count">Showing 120 products</span>
+                        </div>
+                        <div class="view-options">
+                            <div class="view-toggle">
+                                <button class="view-btn active" onclick="setView('grid')" title="Grid View">
+                                    <i class="fas fa-th"></i>
+                                </button>
+                                <button class="view-btn" onclick="setView('list')" title="List View">
+                                    <i class="fas fa-list"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Products Grid -->
+                    <div class="product-grid" id="products-grid">
+                        <!-- Products will be loaded here -->
+                    </div>
+
+                    <!-- Load More -->
+                    <div class="load-more-container">
+                        <button class="btn btn-accent btn-lg" onclick="loadMoreProducts()">Load More Products</button>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </section>
+
+    <!-- Premium Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>GOLAOWN</h3>
+                    <p>The pinnacle of luxury fashion, where exceptional quality meets contemporary design. Experience fashion that transcends expectations.</p>
+                    <div class="social-links" style="margin-top: 20px;">
+                        <a href="#" target="_blank" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" target="_blank" class="social-link" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                        <a href="https://www.instagram.com/gola_own" target="_blank" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <div class="footer-links">
+                        <a href="shop.html">Shop Collection</a>
+                        <a href="about.html">About Us</a>
+                        <a href="contact.html">Contact</a>
+                        <a href="returns.html">Returns</a>
+                        <a href="track-order.html">Track Order</a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <div class="footer-links">
+                        <a href="tel:+18324030393"><i class="fas fa-phone"></i> +1 832 403 0393</a>
+                        <a href="tel:+14452562355"><i class="fas fa-phone"></i> +1 445 256 2355</a>
+                        <a href="mailto:support@golaown.com"><i class="fas fa-envelope"></i> support@golaown.com</a>
+                        <a href="https://wa.me/18324030393" target="_blank" style="color: #25D366; font-weight: 600;"><i class="fab fa-whatsapp"></i> Chat on WhatsApp</a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Secure Payments</h3>
+                    <p style="font-size: 0.8rem; margin-bottom: 15px;">Secure checkout with major providers.</p>
+                    <div class="payment-methods-premium" style="display: flex; gap: 15px; font-size: 1.5rem; color: var(--white); opacity: 0.8;">
+                        <i class="fab fa-cc-visa" title="Visa"></i>
+                        <i class="fab fa-cc-mastercard" title="Mastercard"></i>
+                        <i class="fab fa-paypal" title="PayPal"></i>
+                        <i class="fab fa-apple-pay" title="Apple Pay"></i>
+                        <i class="fab fa-google-pay" title="Google Pay"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom" style="display: flex; flex-direction: column; align-items: center; gap: 15px; margin-top: 40px; border-top: 1px solid var(--premium-border); padding-top: 20px;">
+                <p>&copy; 2026 GOLAOWN. All rights reserved. | Luxury Streetwear Collection</p>
+            </div>
+        </div>
+    </footer>
+    
+    
+
+    <script src="api-client.js"></script>
+    <script>
+        // Product catalog fetched from API
+        let allProducts = [];
+        let filteredProducts = [];
+        let currentView = 'grid';
+        let productsPerPage = 32;
+        let currentPage = 1;
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', async function() {
+            await fetchAndLoadProducts();
+            updateCartCount();
+        });
+
+        async function fetchAndLoadProducts() {
+            try {
+                const response = await window.api.getProducts();
+                if (response.success) {
+                    allProducts = response.data;
+                    filteredProducts = [...allProducts];
+                    
+                    // Update stats
+                    document.getElementById('total-products').textContent = allProducts.length;
+                    const categories = new Set(allProducts.map(p => p.category));
+                    const catCountEl = document.querySelector('.shop-stats .stat-item:nth-child(2) .stat-number');
+                    if (catCountEl) catCountEl.textContent = categories.size;
+
+                    // Check URL parameters for initial filters
+                    const urlParams = new URLSearchParams(window.location.search);
+                    
+                    const gender = urlParams.get('gender');
+                    if (gender) {
+                        const radio = document.querySelector(`input[name="gender"][value="${gender}"]`);
+                        if (radio) radio.checked = true;
+                        
+                        // Dynamic Hero Update
+                        const heroTitle = document.querySelector('.shop-hero h1');
+                        const heroPara = document.querySelector('.shop-hero p');
+                        const heroSection = document.querySelector('.shop-hero');
+                        
+                        if (gender === 'men') {
+                            heroTitle.innerHTML = 'MEN\'S <span class="text-gold">PREMIUM</span>';
+                            heroPara.textContent = 'Sophisticated Streetwear for the Modern Gentleman';
+                            heroSection.style.setProperty('--hero-bg', "url('./assets/images/hero_bg.png')");
+                        } else if (gender === 'women') {
+                            heroTitle.innerHTML = 'WOMEN\'S <span class="text-gold">ELITE</span>';
+                            heroPara.textContent = 'Elegance and Power in Every Piece';
+                            heroSection.style.setProperty('--hero-bg', "url('./assets/images/sweat suit (17).jpg')");
+                        }
+                    }
+
+                    const category = urlParams.get('category');
+                    if (category) {
+                        const radio = document.querySelector(`input[name="category"][value="${category}"]`);
+                        if (radio) radio.checked = true;
+                    }
+                    
+                    filterProducts();
+                } else {
+                    showNotification('Failed to load products', 'error');
+                }
+            } catch (error) {
+                showNotification('Error loading products', 'error');
+            }
+        }
+
+        function loadProducts() {
+            displayProducts(filteredProducts);
+            updateResultsCount();
+        }
+
+        function displayProducts(products) {
+            const grid = document.getElementById('products-grid');
+            grid.innerHTML = '';
+
+            if (products.length === 0) {
+                grid.innerHTML = `
+                    <div class="no-products-found" style="grid-column: 1/-1; text-align: center; padding: 60px; background: #f9f9f9; border-radius: 20px; border: 2px dashed #ddd;">
+                        <i class="fas fa-box-open" style="font-size: 3rem; color: #ccc; margin-bottom: 20px;"></i>
+                        <h3>No Products Found</h3>
+                        <p>It looks like your shop hasn't been populated yet.</p>
+                        <a href="golaown-php/php/full_migrate.php" class="btn btn-primary" style="margin-top: 20px;">Sync Your Assets Now</a>
+                    </div>
+                `;
+                return;
+            }
+
+            const startIndex = (currentPage - 1) * productsPerPage;
+            const endIndex = startIndex + productsPerPage;
+            const productsToShow = products.slice(startIndex, endIndex);
+
+            productsToShow.forEach((product, index) => {
+                setTimeout(() => {
+                    const productCard = createPremiumProductCard(product);
+                    grid.appendChild(productCard);
+                    
+                    // Add entrance animation
+                    setTimeout(() => {
+                        productCard.style.animation = 'fadeInUp 0.6s ease-out';
+                    }, 50);
+                }, index * 100);
+            });
+
+            // Hide load more button if all products are shown
+            const loadMoreBtn = document.querySelector('.load-more-container');
+            if (endIndex >= products.length) {
+                loadMoreBtn.style.display = 'none';
+            } else {
+                loadMoreBtn.style.display = 'block';
+            }
+        }
+
+        function createPremiumProductCard(product) {
+            const card = document.createElement('div');
+            card.className = 'product-card';
+            const imageUrl = product.image_url ? product.image_url : (product.image ? './assets/images/' + product.image : 'assets/images/placeholder.jpg');
+            
+            // Add premium badge for featured items
+            const badge = product.featured ? '<div class="premium-badge">Premium</div>' : '';
+            
+            card.innerHTML = `
+                ${badge}
+                <div class="product-image-container">
+                    <a href="product-detail.html?id=${product.id}">
+                        <img src="${imageUrl}" alt="${product.name}" class="product-image" onerror="this.src='assets/images/placeholder.jpg'">
+                    </a>
+                    <div class="product-overlay">
+                        <button class="overlay-btn" onclick="window.location.href='product-detail.html?id=${product.id}'">
+                            <i class="fas fa-eye"></i> View Details
+                        </button>
+                        <button class="overlay-btn" onclick="addToCart(${product.id})">
+                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <a href="product-detail.html?id=${product.id}" style="text-decoration: none; color: inherit;">
+                        <h3 class="product-name">${product.name}</h3>
+                    </a>
+                    <p class="product-category">${product.category.charAt(0).toUpperCase() + product.category.slice(1)}</p>
+                    <p class="product-price">$${product.price}</p>
+                    <div class="size-selector">
+                        <select id="size-${product.id}" class="size-select">
+                            ${(product.sizes || "S,M,L,XL,XXL").split(',').map(size => `<option value="${size}">${size}</option>`).join('')}
+                        </select>
+                    </div>
+                    <div class="product-actions" style="margin-top: 15px; display: flex; gap: 10px;">
+                        <button class="btn btn-primary btn-sm flex-1" onclick="addToCart(${product.id})">
+                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+            `;
+            return card;
+        }
+
+        function filterProducts() {
+            const category = document.querySelector('input[name="category"]:checked').value;
+            const gender = document.querySelector('input[name="gender"]:checked').value;
+            const maxPrice = document.getElementById('price-range').value;
+            const selectedSizes = Array.from(document.querySelectorAll('.size-option input:checked')).map(cb => cb.value);
+            
+            filteredProducts = allProducts.filter(product => {
+                const categoryMatch = category === 'all' || product.category === category;
+                const genderMatch = gender === 'all' || product.gender === gender;
+                const priceMatch = product.price <= maxPrice;
+                
+                // Size filtering
+                let sizeMatch = true;
+                if (selectedSizes.length > 0) {
+                    // Check if any of the selected sizes exist in the product's sizes string
+                    const availableSizes = (product.sizes || "S,M,L,XL,XXL").split(',');
+                    sizeMatch = selectedSizes.some(s => availableSizes.includes(s));
+                }
+                
+                return categoryMatch && genderMatch && priceMatch && sizeMatch;
+            });
+            
+            sortProducts();
+        }
+
+        function sortProducts() {
+            const sortBy = document.getElementById('sort-by').value;
+            
+            switch(sortBy) {
+                case 'price-low':
+                    filteredProducts.sort((a, b) => a.price - b.price);
+                    break;
+                case 'price-high':
+                    filteredProducts.sort((a, b) => b.price - a.price);
+                    break;
+                case 'name':
+                    filteredProducts.sort((a, b) => a.name.localeCompare(b.name));
+                    break;
+                case 'newest':
+                    filteredProducts.sort((a, b) => b.id - a.id);
+                    break;
+                default:
+                    // Featured first
+                    filteredProducts.sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0));
+            }
+            
+            currentPage = 1;
+            loadProducts();
+        }
+
+        function updatePriceFilter() {
+            const value = document.getElementById('price-range').value;
+            document.getElementById('price-value').textContent = `$${value}`;
+            filterProducts();
+        }
+
+        function clearFilters() {
+            document.querySelector('input[name="category"][value="all"]').checked = true;
+            document.querySelector('input[name="gender"][value="all"]').checked = true;
+            document.getElementById('price-range').value = 75;
+            document.getElementById('price-value').textContent = '$75';
+            
+            document.querySelectorAll('.size-option input').forEach(cb => cb.checked = false);
+            
+            filterProducts();
+        }
+
+        function setView(view) {
+            currentView = view;
+            document.querySelectorAll('.view-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            const grid = document.getElementById('products-grid');
+            if (view === 'list') {
+                grid.style.gridTemplateColumns = '1fr';
+            } else {
+                grid.style.gridTemplateColumns = 'repeat(auto-fill, minmax(300px, 1fr))';
+            }
+        }
+
+        function loadMoreProducts() {
+            currentPage++;
+            displayProducts(filteredProducts);
+        }
+
+        function updateResultsCount() {
+            const count = filteredProducts.length;
+            document.getElementById('results-count').textContent = `Showing ${count} products`;
+        }
+
+        // Enhanced cart functionality
+        async function addToCart(productId) {
+            try {
+                const sizeSelect = document.getElementById(`size-${productId}`);
+                const selectedSize = sizeSelect ? sizeSelect.value : 'M';
+                
+                // Add premium animation
+                const button = event.target;
+                button.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+                button.disabled = true;
+                
+                const result = await window.api.addToCart(productId, 1, selectedSize);
+                
+                if (result.success) {
+                    showNotification('Item added to cart successfully!', 'success');
+                    updateCartCount();
+                    
+                    // Success animation
+                    button.innerHTML = '<i class="fas fa-check"></i> Added!';
+                    setTimeout(() => {
+                        button.innerHTML = '<i class="fas fa-shopping-cart"></i> Add to Cart';
+                        button.disabled = false;
+                    }, 1500);
+                } else {
+                    showNotification(result.error || 'Failed to add item to cart', 'error');
+                    button.innerHTML = '<i class="fas fa-shopping-cart"></i> Add to Cart';
+                    button.disabled = false;
+                }
+            } catch (error) {
+                showNotification('Error adding item to cart', 'error');
+                const button = event.target;
+                button.innerHTML = '<i class="fas fa-shopping-cart"></i> Add to Cart';
+                button.disabled = false;
+            }
+        }
+
+        function addToWishlist(productId) {
+            const button = event.target;
+            button.innerHTML = '<i class="fas fa-heart"></i>';
+            showNotification('Added to wishlist!', 'success');
+        }
+
+        function quickView(productId) {
+            const product = allProducts.find(p => p.id === productId);
+            if (product) {
+                showNotification(`Quick View: ${product.name} - $${product.price}`, 'info');
+            }
+        }
+
+        function updateCartCount() {
+            if (window.api && typeof window.api.refreshCartCount === 'function') {
+                window.api.refreshCartCount();
+            }
+        }
+
+
+        // Premium notification system
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.innerHTML = `
+                <div class="notification-content">
+                    <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle'}"></i>
+                    <span>${message}</span>
+                </div>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.animation = 'slideOutFromRight 0.3s ease-out';
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 4000);
+        }
+
+        // Smooth scroll navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+
+    <style>
+        /* Shop-specific premium styles */
+        .shop-hero {
+            background: linear-gradient(135deg, var(--primary-black) 0%, var(--primary-dark) 100%);
+            color: var(--white);
+            padding: var(--space-24) 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .shop-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--hero-bg, url('./assets/images/hero_bg.png')) center/cover;
+            opacity: 0.15;
+            z-index: 0;
+            filter: grayscale(100%) brightness(0.5);
+        }
+
+        .shop-hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 var(--space-6);
+        }
+
+        .shop-hero h1 {
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 8vw, 4rem);
+            font-weight: 900;
+            margin-bottom: var(--space-6);
+            letter-spacing: -0.05em;
+        }
+
+        .shop-hero p {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            margin-bottom: var(--space-12);
+        }
+
+        .shop-stats {
+            display: flex;
+            justify-content: center;
+            gap: var(--space-12);
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            display: block;
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--accent-gold);
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            opacity: 0.8;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .shop-content {
+            padding: var(--space-20) 0;
+        }
+
+        .shop-layout {
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            gap: var(--space-12);
+        }
+
+        .shop-sidebar {
+            background: var(--white);
+            border: 1px solid var(--light-gray);
+            border-radius: var(--radius-2xl);
+            padding: var(--space-8);
+            height: fit-content;
+            position: sticky;
+            top: 120px;
+        }
+
+        .filter-section {
+            margin-bottom: var(--space-8);
+        }
+
+        .filter-section h3 {
+            font-size: 1.125rem;
+            font-weight: 700;
+            margin-bottom: var(--space-4);
+            color: var(--primary-black);
+        }
+
+        .filter-options {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-3);
+        }
+
+        .filter-option {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            cursor: pointer;
+            font-size: 0.875rem;
+            color: var(--secondary-gray);
+            transition: var(--transition-fast);
+            padding: var(--space-2);
+            border-radius: var(--radius-lg);
+        }
+
+        .filter-option:hover {
+            color: var(--primary-black);
+            background: var(--light-gray);
+        }
+
+        .filter-option input {
+            accent-color: var(--accent-gold);
+        }
+
+        .price-range {
+            margin-bottom: var(--space-4);
+        }
+
+        .price-display {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.875rem;
+            color: var(--secondary-gray);
+            margin-bottom: var(--space-2);
+        }
+
+        .size-filters {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-2);
+        }
+
+        .size-option {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-2);
+            padding: var(--space-3);
+            border: 1px solid var(--light-gray);
+            border-radius: var(--radius-lg);
+            cursor: pointer;
+            font-size: 0.75rem;
+            transition: var(--transition-fast);
+        }
+
+        .size-option:hover {
+            border-color: var(--accent-gold);
+        }
+
+        .size-option input {
+            accent-color: var(--accent-gold);
+        }
+
+        .sort-select {
+            width: 100%;
+            padding: var(--space-3);
+            border: 1px solid var(--light-gray);
+            border-radius: var(--radius-lg);
+            font-size: 0.875rem;
+            background: var(--white);
+            color: var(--primary-black);
+            cursor: pointer;
+        }
+
+        .shop-main {
+            min-height: 1000px;
+        }
+
+        .shop-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-8);
+            padding-bottom: var(--space-4);
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .results-info {
+            font-size: 0.875rem;
+            color: var(--secondary-gray);
+        }
+
+        .view-options {
+            display: flex;
+            align-items: center;
+            gap: var(--space-4);
+        }
+
+        .view-toggle {
+            display: flex;
+            gap: 2px;
+            background: var(--light-gray);
+            padding: 2px;
+            border-radius: var(--radius-lg);
+        }
+
+        .view-btn {
+            padding: var(--space-3);
+            background: transparent;
+            border: none;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: var(--transition-fast);
+        }
+
+        .view-btn.active {
+            background: var(--white);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .load-more-container {
+            text-align: center;
+            margin-top: var(--space-16);
+        }
+
+        .premium-badge {
+            position: absolute;
+            top: var(--space-4);
+            right: var(--space-4);
+            background: var(--accent-gold);
+            color: var(--white);
+            padding: var(--space-2) var(--space-3);
+            border-radius: var(--radius-full);
+            font-size: 0.625rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            z-index: 10;
+        }
+
+        @media (max-width: 1024px) {
+            .shop-layout {
+                grid-template-columns: 1fr;
+                gap: var(--space-8);
+            }
+
+            .shop-sidebar {
+                position: static;
+            }
+
+            .shop-controls {
+                flex-direction: column;
+                gap: var(--space-4);
+                align-items: flex-start;
+            }
+
+            .view-options {
+                width: 100%;
+                justify-content: space-between;
+            }
+
+            .shop-stats {
+                flex-direction: column;
+                gap: var(--space-6);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .shop-hero h1 {
+                font-size: 2rem;
+            }
+
+            .product-grid {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+                gap: var(--space-6);
+            }
+        }
+    </style>
+    <a href="https://wa.me/18324030393" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+</body>
+</html>

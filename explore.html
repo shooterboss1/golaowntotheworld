@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explore Now - GOLAOWN</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="hero-section">
+        <!-- Premium Header -->
+    <header class="header">
+        <div class="header-container">
+            <a href="index.html" class="logo" style="display: flex; align-items: center; gap: 10px;">
+                <img src="./assets/images/Logo.jpeg" alt="GOLAOWN Logo" style="width: 40px; height: 40px; border-radius: 8px;">
+                GOLAOWN
+            </a>
+            
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="shop.html" class="nav-link">Shop</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </nav>
+            
+            <div class="nav-actions">
+                <div class="header-socials" style="display: flex; gap: 10px; margin-right: 15px; border-right: 1px solid var(--premium-border); padding-right: 15px;">
+                    <a href="https://www.instagram.com/gola_own" target="_blank" class="social-link" style="width: 30px; height: 30px; font-size: 0.9rem;"><i class="fab fa-instagram"></i></a>
+                    <a href="#" target="_blank" class="social-link" style="width: 30px; height: 30px; font-size: 0.9rem;"><i class="fab fa-tiktok"></i></a>
+                    <a href="#" target="_blank" class="social-link" style="width: 30px; height: 30px; font-size: 0.9rem;"><i class="fab fa-facebook-f"></i></a>
+                </div>
+                <button class="btn btn-ghost btn-sm" onclick="openSearch()">
+                    <i class="fas fa-search"></i>
+                </button>
+                <button class="btn btn-ghost btn-sm" onclick="openAccount()">
+                    <i class="fas fa-user"></i>
+                </button>
+                <button class="btn btn-primary btn-sm" onclick="openCart()">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span id="cart-count">0</span>
+                </button>
+            </div>
+            
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+        <main class="hero-content">
+            <h1 class="hero-title">Explore New Arrivals</h1>
+            <p class="hero-subtitle">Discover the latest trends and exclusive collections</p>
+        </main>
+    </div>
+
+    <div class="explore-container">
+        <!-- Featured Collections -->
+        <section class="featured-collections">
+            <div class="container">
+                <h2 class="section-title">Featured Collections</h2>
+                <div class="collections-grid">
+                    <div class="collection-card">
+                        <div class="collection-image">
+                            <img src="assets/images/polo-collars.jpg" alt="Spring Collection">
+                            <div class="collection-overlay">
+                                <h3>Spring Collection 2026</h3>
+                                <p>Fresh styles for the new season</p>
+                                <a href="shop.html?category=spring" class="collection-btn">Shop Now</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="collection-card">
+                        <div class="collection-image">
+                            <img src="assets/images/sweat-suit.jpg" alt="Athletic Wear">
+                            <div class="collection-overlay">
+                                <h3>Athletic Performance</h3>
+                                <p>Premium sportswear and activewear</p>
+                                <a href="shop.html?category=athletic" class="collection-btn">Shop Now</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="collection-card">
+                        <div class="collection-image">
+                            <img src="assets/images/socks.jpg" alt="Accessories">
+                            <div class="collection-overlay">
+                                <h3>Essential Accessories</h3>
+                                <p>Complete your look with our accessories</p>
+                                <a href="shop.html?category=accessories" class="collection-btn">Shop Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- New Arrivals -->
+        <section class="new-arrivals">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Just Dropped</h2>
+                    <div class="arrival-filters">
+                        <button class="filter-btn active" data-filter="all">All</button>
+                        <button class="filter-btn" data-filter="men">Men</button>
+                        <button class="filter-btn" data-filter="women">Women</button>
+                        <button class="filter-btn" data-filter="unisex">Unisex</button>
+                    </div>
+                </div>
+                
+                <div class="arrivals-grid" id="arrivals-grid">
+                    <!-- Products will be loaded here -->
+                </div>
+                
+                <div class="load-more">
+                    <button class="load-more-btn" onclick="loadMoreProducts()">Load More</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Trending Now -->
+        <section class="trending-now">
+            <div class="container">
+                <h2 class="section-title">Trending Now</h2>
+                <div class="trending-grid">
+                    <div class="trending-item">
+                        <div class="trending-number">1</div>
+                        <img src="assets/images/polo-collars.jpg" alt="Polo Collars">
+                        <div class="trending-info">
+                            <h4>Polo Collars</h4>
+                            <p class="trending-price">$35</p>
+                            <div class="trending-badge">Hot</div>
+                        </div>
+                    </div>
+                    <div class="trending-item">
+                        <div class="trending-number">2</div>
+                        <img src="assets/images/hoodies.jpg" alt="Hoodies Suit">
+                        <div class="trending-info">
+                            <h4>Hoodies Suit</h4>
+                            <p class="trending-price">$75</p>
+                            <div class="trending-badge">Trending</div>
+                        </div>
+                    </div>
+                    <div class="trending-item">
+                        <div class="trending-number">3</div>
+                        <img src="assets/images/women-shorts.jpg" alt="Women Shorts">
+                        <div class="trending-info">
+                            <h4>Women Shorts</h4>
+                            <p class="trending-price">$20</p>
+                            <div class="trending-badge">Popular</div>
+                        </div>
+                    </div>
+                    <div class="trending-item">
+                        <div class="trending-number">4</div>
+                        <img src="assets/images/bucket-hat.jpg" alt="Bucket Hat">
+                        <div class="trending-info">
+                            <h4>Bucket Hat</h4>
+                            <p class="trending-price">$10</p>
+                            <div class="trending-badge">New</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Limited Edition -->
+        <section class="limited-edition">
+            <div class="container">
+                <div class="limited-header">
+                    <h2 class="section-title">Limited Edition</h2>
+                    <div class="limited-timer">
+                        <i class="fas fa-clock"></i>
+                        <span>Ends in: </span>
+                        <div class="countdown" id="countdown">
+                            <span class="time-unit">02d</span>
+                            <span class="time-unit">15h</span>
+                            <span class="time-unit">34m</span>
+                            <span class="time-unit">22s</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="limited-grid">
+                    <div class="limited-item">
+                        <div class="limited-badge">Limited</div>
+                        <img src="assets/images/sweat-suit.jpg" alt="Limited Sweat Suit">
+                        <div class="limited-info">
+                            <h4>Premium Sweat Suit</h4>
+                            <p class="limited-price">
+                                <span class="original-price">$80</span>
+                                <span class="sale-price">$60</span>
+                            </p>
+                            <div class="stock-info">Only 5 left in stock</div>
+                            <button class="limited-btn">Shop Now</button>
+                        </div>
+                    </div>
+                    <div class="limited-item">
+                        <div class="limited-badge">Exclusive</div>
+                        <img src="assets/images/hoodies.jpg" alt="Limited Hoodies">
+                        <div class="limited-info">
+                            <h4>Designer Hoodies</h4>
+                            <p class="limited-price">
+                                <span class="original-price">$95</span>
+                                <span class="sale-price">$75</span>
+                            </p>
+                            <div class="stock-info">Only 3 left in stock</div>
+                            <button class="limited-btn">Shop Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Style Guide -->
+        <section class="style-guide">
+            <div class="container">
+                <h2 class="section-title">Style Guide</h2>
+                <div class="style-grid">
+                    <div class="style-card">
+                        <div class="style-image">
+                            <img src="assets/images/polo-collars.jpg" alt="Casual Look">
+                            <div class="style-overlay">
+                                <h3>Casual Friday</h3>
+                                <p>Perfect for relaxed office days</p>
+                                <button class="style-btn">Get the Look</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="style-card">
+                        <div class="style-image">
+                            <img src="assets/images/sweat-suit.jpg" alt="Athletic Look">
+                            <div class="style-overlay">
+                                <h3>Athletic Comfort</h3>
+                                <p>Performance meets style</p>
+                                <button class="style-btn">Get the Look</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="style-card">
+                        <div class="style-image">
+                            <img src="assets/images/socks.jpg" alt="Street Style">
+                            <div class="style-overlay">
+                                <h3>Street Style</h3>
+                                <p>Urban fashion essentials</p>
+                                <button class="style-btn">Get the Look</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Newsletter -->
+        <section class="explore-newsletter">
+            <div class="container">
+                <div class="newsletter-content">
+                    <h2>Stay Ahead of the Trends</h2>
+                    <p>Be the first to know about new arrivals, exclusive offers, and style inspiration</p>
+                    <form class="newsletter-form">
+                        <div class="newsletter-input-group">
+                            <input type="email" placeholder="Enter your email address" required>
+                            <button type="submit" class="newsletter-btn">Subscribe</button>
+                        </div>
+                        <div class="newsletter-options">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="updates">
+                                <span>Send me updates about new arrivals</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="offers">
+                                <span>Send me exclusive offers</span>
+                            </label>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Premium Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>GOLAOWN</h3>
+                    <p>The pinnacle of luxury fashion, where exceptional quality meets contemporary design. Experience fashion that transcends expectations.</p>
+                    <div class="social-links" style="margin-top: 20px;">
+                        <a href="#" target="_blank" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" target="_blank" class="social-link" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                        <a href="https://www.instagram.com/gola_own" target="_blank" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <div class="footer-links">
+                        <a href="shop.html">Shop Collection</a>
+                        <a href="about.html">About Us</a>
+                        <a href="contact.html">Contact</a>
+                        <a href="returns.html">Returns</a>
+                        <a href="track-order.html">Track Order</a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <div class="footer-links">
+                        <a href="tel:+18324030393"><i class="fas fa-phone"></i> +1 832 403 0393</a>
+                        <a href="tel:+14452562355"><i class="fas fa-phone"></i> +1 445 256 2355</a>
+                        <a href="mailto:support@golaown.com"><i class="fas fa-envelope"></i> support@golaown.com</a>
+                        <a href="https://wa.me/18324030393" target="_blank" style="color: #25D366; font-weight: 600;"><i class="fab fa-whatsapp"></i> Chat on WhatsApp</a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Secure Payments</h3>
+                    <p style="font-size: 0.8rem; margin-bottom: 15px;">Secure checkout with major providers.</p>
+                    <div class="payment-methods-premium" style="display: flex; gap: 15px; font-size: 1.5rem; color: var(--white); opacity: 0.8;">
+                        <i class="fab fa-cc-visa" title="Visa"></i>
+                        <i class="fab fa-cc-mastercard" title="Mastercard"></i>
+                        <i class="fab fa-paypal" title="PayPal"></i>
+                        <i class="fab fa-apple-pay" title="Apple Pay"></i>
+                        <i class="fab fa-google-pay" title="Google Pay"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom" style="display: flex; flex-direction: column; align-items: center; gap: 15px; margin-top: 40px; border-top: 1px solid var(--premium-border); padding-top: 20px;">
+                <p>&copy; 2026 GOLAOWN. All rights reserved. | Luxury Streetwear Collection</p>
+            </div>
+        </div>
+    </footer>
+    
+    
+
+    <script>
+        // Product data
+        const products = [
+            { id: 1, name: 'Polo Collars', price: 35, category: 'polo', gender: 'men', image: 'polo-collars.jpg', newArrival: true },
+            { id: 2, name: 'Regular T-Shirt', price: 25, category: 'regular', gender: 'men', image: 'regular.jpg', newArrival: true },
+            { id: 3, name: 'Women Shorts', price: 20, category: 'shorts', gender: 'women', image: 'women-shorts.jpg', newArrival: true },
+            { id: 4, name: 'Muscle Arms Shorts', price: 20, category: 'shorts', gender: 'men', image: 'muscle-arms-shorts.jpg', newArrival: true },
+            { id: 5, name: 'Frisch Shorts', price: 25, category: 'shorts', gender: 'men', image: 'frisch-shorts.jpg', newArrival: true },
+            { id: 6, name: 'Sweat Suit', price: 60, category: 'sweats', gender: 'unisex', image: 'sweat-suit.jpg', newArrival: true },
+            { id: 7, name: 'Hoodies Suit', price: 75, category: 'hoodies', gender: 'unisex', image: 'hoodies.jpg', newArrival: true },
+            { id: 8, name: 'Socks', price: 10, category: 'accessories', gender: 'unisex', image: 'socks.jpg', newArrival: true },
+            { id: 9, name: 'Bucket Hat', price: 10, category: 'accessories', gender: 'unisex', image: 'bucket-hat.jpg', newArrival: true },
+            { id: 10, name: 'Trucker Hat', price: 20, category: 'accessories', gender: 'unisex', image: 'trucker.jpg', newArrival: true }
+        ];
+
+        let currentFilter = 'all';
+        let displayedProducts = 6;
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            loadNewArrivals();
+            startCountdown();
+        });
+
+        function loadNewArrivals() {
+            const grid = document.getElementById('arrivals-grid');
+            const newArrivals = products.filter(product => product.newArrival);
+            const filteredArrivals = currentFilter === 'all' ? 
+                newArrivals : 
+                newArrivals.filter(product => product.gender === currentFilter);
+            
+            grid.innerHTML = '';
+            
+            filteredArrivals.slice(0, displayedProducts).forEach(product => {
+                const productCard = createProductCard(product);
+                grid.appendChild(productCard);
+            });
+
+            // Hide load more button if all products are displayed
+            const loadMoreBtn = document.querySelector('.load-more-btn');
+            if (displayedProducts >= filteredArrivals.length) {
+                loadMoreBtn.style.display = 'none';
+            } else {
+                loadMoreBtn.style.display = 'block';
+            }
+        }
+
+        function createProductCard(product) {
+            const card = document.createElement('div');
+            card.className = 'arrival-card';
+            card.innerHTML = `
+                <div class="arrival-image">
+                    <img src="assets/images/${product.image}" alt="${product.name}" onerror="this.src='assets/images/hero_bg.png'">
+                    <div class="arrival-overlay">
+                        <button class="quick-view-btn" onclick="quickView(${product.id})">Quick View</button>
+                        <button class="add-to-cart-btn" onclick="addToCart(${product.id})">Add to Cart</button>
+                    </div>
+                    <div class="arrival-badge">New</div>
+                </div>
+                <div class="arrival-info">
+                    <h3 class="arrival-name">${product.name}</h3>
+                    <p class="arrival-price">$${product.price}</p>
+                    <div class="arrival-meta">
+                        <span class="gender-tag">${product.gender}</span>
+                        <span class="category-tag">${product.category}</span>
+                    </div>
+                </div>
+            `;
+            return card;
+        }
+
+        function loadMoreProducts() {
+            displayedProducts += 3;
+            loadNewArrivals();
+        }
+
+        // Filter functionality
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                currentFilter = this.dataset.filter;
+                displayedProducts = 6; // Reset displayed products
+                loadNewArrivals();
+            });
+        });
+
+        function quickView(productId) {
+            const product = products.find(p => p.id === productId);
+            alert(`Quick View: ${product.name}\nPrice: $${product.price}\nCategory: ${product.category}\nGender: ${product.gender}`);
+        }
+
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            alert(`${product.name} added to cart!`);
+        }
+
+        // Countdown timer
+        function startCountdown() {
+            // Set end date (2 days from now for demo)
+            const endDate = new Date();
+            endDate.setDate(endDate.getDate() + 2);
+
+            function updateCountdown() {
+                const now = new Date();
+                const timeLeft = endDate - now;
+
+                if (timeLeft > 0) {
+                    const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+                    const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                    const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+                    const countdownEl = document.getElementById('countdown');
+                    countdownEl.innerHTML = `
+                        <span class="time-unit">${String(days).padStart(2, '0')}d</span>
+                        <span class="time-unit">${String(hours).padStart(2, '0')}h</span>
+                        <span class="time-unit">${String(minutes).padStart(2, '0')}m</span>
+                        <span class="time-unit">${String(seconds).padStart(2, '0')}s</span>
+                    `;
+                }
+            }
+
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+        }
+
+        // Newsletter form
+        document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = this.querySelector('input[type="email"]').value;
+            alert(`Thank you for subscribing with ${email}! You'll receive updates about new arrivals.`);
+            this.reset();
+        });
+
+        // Style guide buttons
+        document.querySelectorAll('.style-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                alert('Redirecting to shop with curated items for this look...');
+                // window.location.href = 'shop.html?style=' + this.parentElement.querySelector('h3').textContent;
+            });
+        });
+
+        // Limited edition buttons
+        document.querySelectorAll('.limited-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                alert('Adding limited edition item to cart...');
+            });
+        });
+    </script>
+    <a href="https://wa.me/18324030393" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+</body>
+</html>

@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact GOLAOWN - Get in Touch</title>
+    <meta name="description" content="Discover luxury fashion at GOLAOWN. Shop our curated collection of premium clothing, accessories, and exclusive designs.">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .page-header { padding: 8rem 0 4rem; text-align: center; background: #000; color: white; margin-bottom: 4rem; }
+        .page-title { font-size: 3rem; font-weight: 900; margin-bottom: 1rem; letter-spacing: -2px; text-transform: uppercase;}
+        .page-content { max-width: 1000px; margin: 0 auto 5rem; padding: 0 2rem; font-size: 1.1rem; line-height: 1.8; color: #111; min-height: 300px; }
+        .page-content h2 { color: #000; margin-top: 2.5rem; margin-bottom: 1.5rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px;}
+        .page-content p { margin-bottom: 1.5rem; color: #444; }
+        .contact-card { background: #fff; padding: 2rem; border-radius: 12px; border: 1px solid #eee; transition: all 0.3s ease; }
+        .contact-card:hover { border-color: #000; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+    </style>
+</head>
+<body>
+    <!-- Premium Header -->
+    <header class="header">
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <img src="./assets/images/Logo.jpeg" alt="GOLAOWN Logo" class="logo-img">
+                <span class="logo-text">GOLA<span class="text-gold">OWN</span></span>
+            </a>
+
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="shop.html" class="nav-link">Shop</a>
+                <a href="men.html" class="nav-link">Men</a>
+                <a href="women.html" class="nav-link">Women</a>
+                <a href="search.html" class="nav-link">Search</a>
+            </nav>
+
+            <div class="header-actions">
+                <button class="icon-btn" onclick="openSearch()" aria-label="Search">
+                    <i class="fas fa-search"></i>
+                </button>
+                <button class="icon-btn" onclick="openAccount()" aria-label="Account">
+                    <i class="fas fa-user"></i>
+                </button>
+                <button class="icon-btn cart-btn" onclick="openCart()" aria-label="Cart">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count" id="cart-count">0</span>
+                </button>
+                <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div class="page-header">
+        <div class="container">
+            <h1 class="page-title">Contact Us</h1>
+        </div>
+    </div>
+
+    <main class="page-content">
+        <div class="contact-container" style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; margin-bottom: 4rem;">
+            <div class="contact-info">
+                <h2>Get in Touch</h2>
+                <p>We'd love to hear from you! Whether you have questions about our products, need help with an order, or just want to share your feedback, our team is here to help.</p>
+                
+                <div class="contact-details" style="margin-top: 2rem;">
+                    <div class="contact-item" style="display: flex; align-items: center; margin-bottom: 1.5rem;">
+                        <i class="fas fa-phone" style="width: 20px; margin-right: 1rem; color: #000;"></i>
+                        <div>
+                            <h4 style="margin: 0; font-weight: 700; text-transform: uppercase; font-size: 0.9rem;">Primary Phone</h4>
+                            <p style="margin: 0; color: #111; font-weight: 500;">+1 832 403 0393</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item" style="display: flex; align-items: center; margin-bottom: 1.5rem;">
+                        <i class="fas fa-phone" style="width: 20px; margin-right: 1rem; color: #000;"></i>
+                        <div>
+                            <h4 style="margin: 0; font-weight: 700; text-transform: uppercase; font-size: 0.9rem;">Secondary Phone</h4>
+                            <p style="margin: 0; color: #111; font-weight: 500;">+1 445 256 2355</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item" style="display: flex; align-items: center; margin-bottom: 1.5rem;">
+                        <i class="fas fa-envelope" style="width: 20px; margin-right: 1rem; color: #000;"></i>
+                        <div>
+                            <h4 style="margin: 0; font-weight: 700; text-transform: uppercase; font-size: 0.9rem;">Email</h4>
+                            <p style="margin: 0; color: #111; font-weight: 500;">support@golaown.com</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-actions" style="margin-top: 2rem;">
+                    <h3>Quick Connect</h3>
+                    <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 15px;">
+                        <a href="tel:+18324030393" class="contact-btn call"><i class="fas fa-phone-alt"></i> Call +1 832 403 0393</a>
+                        <a href="tel:+14452562355" class="contact-btn call"><i class="fas fa-phone-alt"></i> Call +1 445 256 2355</a>
+                        <a href="https://wa.me/18324030393" target="_blank" class="contact-btn whatsapp"><i class="fab fa-whatsapp"></i> Chat on WhatsApp</a>
+                    </div>
+                </div>
+                
+                <div class="social-contact" style="margin-top: 3rem;">
+                    <h3>Follow the Brand</h3>
+                    <div class="social-links" style="display: flex; gap: 1rem; margin-top: 1.5rem;">
+                        <a href="https://www.instagram.com/gola_own" target="_blank" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" target="_blank" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" target="_blank" class="social-link"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="contact-form-container">
+                <h2>Send Us a Message</h2>
+                <p>Fill out the form below and we'll get back to you as soon as possible.</p>
+                
+                <form id="contact-form" style="margin-top: 2rem;" onsubmit="handleContactSubmit(event)">
+                    <div class="form-group" style="margin-bottom: 1.5rem;">
+                        <label for="name" style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Name *</label>
+                        <input type="text" id="name" name="name" required style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 4px; font-size: 1rem;">
+                    </div>
+                    
+                    <div class="form-group" style="margin-bottom: 1.5rem;">
+                        <label for="email" style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Email *</label>
+                        <input type="email" id="email" name="email" required style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 4px; font-size: 1rem;">
+                    </div>
+                    
+                    <div class="form-group" style="margin-bottom: 1.5rem;">
+                        <label for="subject" style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Subject *</label>
+                        <select id="subject" name="subject" required style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 4px; font-size: 1rem;">
+                            <option value="">Select a topic</option>
+                            <option value="order">Order Inquiry</option>
+                            <option value="product">Product Question</option>
+                            <option value="shipping">Shipping & Delivery</option>
+                            <option value="returns">Returns & Exchanges</option>
+                            <option value="general">General Inquiry</option>
+                            <option value="feedback">Feedback</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group" style="margin-bottom: 1.5rem;">
+                        <label for="message" style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Message *</label>
+                        <textarea id="message" name="message" rows="5" required style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 4px; font-size: 1rem; resize: vertical;"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary" style="width: 100%; padding: 1rem; background: #000; color: white; border: none; border-radius: 4px; font-size: 1rem; font-weight: 700; cursor: pointer; transition: background 0.3s; text-transform: uppercase; letter-spacing: 1px;">
+                        Send Message
+                    </button>
+                </form>
+            </div>
+        </div>
+        
+        <div class="faq-section" style="margin-top: 4rem;">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-item" style="margin-bottom: 2rem;">
+                <h3 style="color: #000; margin-bottom: 0.5rem; text-transform: uppercase; font-size: 1rem;">How long does shipping take?</h3>
+                <p>Standard shipping typically takes 5-7 business days, while express shipping takes 2-3 business days. International shipping times vary by location.</p>
+            </div>
+            
+            <div class="faq-item" style="margin-bottom: 2rem;">
+                <h3 style="color: #d4af37; margin-bottom: 0.5rem;">What is your return policy?</h3>
+                <p>We offer a 30-day return policy for unused items in their original packaging. Please visit our returns page for more details.</p>
+            </div>
+            
+            <div class="faq-item" style="margin-bottom: 2rem;">
+                <h3 style="color: #d4af37; margin-bottom: 0.5rem;">How can I track my order?</h3>
+                <p>Once your order ships, you'll receive a tracking number via email. You can also track your order using our order tracking page.</p>
+            </div>
+            
+            <div class="faq-item" style="margin-bottom: 2rem;">
+                <h3 style="color: #d4af37; margin-bottom: 0.5rem;">Do you offer international shipping?</h3>
+                <p>Yes, we ship to most countries worldwide. International shipping rates and delivery times vary by destination.</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Premium Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>GOLAOWN</h3>
+                    <p>The pinnacle of luxury fashion, where exceptional quality meets contemporary design. Experience fashion that transcends expectations.</p>
+                    <div class="social-links" style="margin-top: 20px;">
+                        <a href="#" target="_blank" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" target="_blank" class="social-link" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                        <a href="https://www.instagram.com/gola_own" target="_blank" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <div class="footer-links">
+                        <a href="shop.html">Shop Collection</a>
+                        <a href="about.html">About Us</a>
+                        <a href="contact.html">Contact</a>
+                        <a href="returns.html">Returns</a>
+                        <a href="track-order.html">Track Order</a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <div class="footer-links">
+                        <a href="tel:+18324030393"><i class="fas fa-phone"></i> +1 832 403 0393</a>
+                        <a href="tel:+14452562355"><i class="fas fa-phone"></i> +1 445 256 2355</a>
+                        <a href="mailto:support@golaown.com"><i class="fas fa-envelope"></i> support@golaown.com</a>
+                        <a href="https://wa.me/18324030393" target="_blank" style="color: #25D366; font-weight: 600;"><i class="fab fa-whatsapp"></i> Chat on WhatsApp</a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Secure Payments</h3>
+                    <p style="font-size: 0.8rem; margin-bottom: 15px;">Secure checkout with major providers.</p>
+                    <div class="payment-methods-premium" style="display: flex; gap: 15px; font-size: 1.5rem; color: var(--white); opacity: 0.8;">
+                        <i class="fab fa-cc-visa" title="Visa"></i>
+                        <i class="fab fa-cc-mastercard" title="Mastercard"></i>
+                        <i class="fab fa-paypal" title="PayPal"></i>
+                        <i class="fab fa-apple-pay" title="Apple Pay"></i>
+                        <i class="fab fa-google-pay" title="Google Pay"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom" style="display: flex; flex-direction: column; align-items: center; gap: 15px; margin-top: 40px; border-top: 1px solid var(--premium-border); padding-top: 20px;">
+                <p>&copy; 2026 GOLAOWN. All rights reserved. | Luxury Streetwear Collection</p>
+            </div>
+        </div>
+    </footer>
+    
+    
+
+    <script src="api-client.js"></script>
+    <script>
+        // Update cart count
+        function updateCartCount() {
+            const cartCount = document.getElementById('cart-count');
+            if (cartCount) {
+                const count = localStorage.getItem('cartCount') || '0';
+                cartCount.textContent = count;
+            }
+        }
+        
+        // Navigation functions
+        function openSearch() {
+            window.location.href = 'search.html';
+        }
+
+        function openAccount() {
+            window.location.href = 'account.html';
+        }
+
+        function openCart() {
+            window.location.href = 'cart.html';
+        }
+
+        function toggleMobileMenu() {
+            const nav = document.querySelector('.nav-menu');
+            if (nav.style.display === 'flex' && nav.style.flexDirection === 'column') {
+                nav.style.display = '';
+                nav.style.flexDirection = '';
+                nav.style.position = '';
+                nav.style.background = '';
+                nav.style.padding = '';
+                nav.style.boxShadow = '';
+                nav.style.zIndex = '';
+            } else {
+                nav.style.display = 'flex';
+                nav.style.flexDirection = 'column';
+                nav.style.position = 'absolute';
+                nav.style.top = '100%';
+                nav.style.left = '0';
+                nav.style.right = '0';
+                nav.style.background = 'white';
+                nav.style.padding = '20px';
+                nav.style.boxShadow = '0 10px 20px rgba(0,0,0,0.1)';
+                nav.style.zIndex = '1000';
+            }
+        }
+
+        // Notification system
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: ${type === 'success' ? '#10b981' : type === 'error' ? '#ef4444' : '#3b82f6'};
+                color: white;
+                padding: 1rem 1.5rem;
+                border-radius: 8px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                z-index: 1000;
+                animation: slideInFromRight 0.3s ease-out;
+            `;
+            notification.innerHTML = `
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                    <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle'}"></i>
+                    <span>${message}</span>
+                </div>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.animation = 'slideOutFromRight 0.3s ease-out';
+                setTimeout(() => {
+                    if (document.body.contains(notification)) {
+                        document.body.removeChild(notification);
+                    }
+                }, 300);
+            }, 4000);
+        }
+
+        // Handle contact form submission
+        function handleContactSubmit(event) {
+            event.preventDefault();
+            
+            const formData = new FormData(event.target);
+            const contactData = {
+                name: formData.get('name'),
+                email: formData.get('email'),
+                subject: formData.get('subject'),
+                message: formData.get('message')
+            };
+            
+            // Show loading state
+            const submitBtn = event.target.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Sending...';
+            submitBtn.disabled = true;
+            
+            // Simulate form submission (in production, this would send to a backend)
+            setTimeout(() => {
+                showNotification('Thank you for your message! We\'ll get back to you within 24 hours.', 'success');
+                event.target.reset();
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            }, 1500);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            updateCartCount();
+        });
+
+        // Add scroll effect to header
+        let lastScroll = 0;
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+                header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.boxShadow = 'none';
+            }
+            
+            lastScroll = currentScroll;
+        });
+    </script>
+    <a href="https://wa.me/18324030393" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+</body>
+</html>

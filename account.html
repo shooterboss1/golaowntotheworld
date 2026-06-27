@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Account - GOLAOWN</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Premium Header -->
+    <header class="header">
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <img src="./assets/images/Logo.jpeg" alt="GOLAOWN Logo" class="logo-img">
+                <span class="logo-text">GOLA<span class="text-gold">OWN</span></span>
+            </a>
+
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="shop.html" class="nav-link">Shop</a>
+                <a href="men.html" class="nav-link">Men</a>
+                <a href="women.html" class="nav-link">Women</a>
+                <a href="search.html" class="nav-link">Search</a>
+            </nav>
+
+            <div class="header-actions">
+                <button class="icon-btn" onclick="openSearch()" aria-label="Search">
+                    <i class="fas fa-search"></i>
+                </button>
+                <button class="icon-btn" onclick="openAccount()" aria-label="Account">
+                    <i class="fas fa-user"></i>
+                </button>
+                <button class="icon-btn cart-btn" onclick="openCart()" aria-label="Cart">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count" id="cart-count">0</span>
+                </button>
+                <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div class="account-container mt-8">
+        <!-- Auth Section (Login/Register) -->
+        <div class="auth-card-premium" id="auth-section">
+            <div class="auth-header-premium">
+                <button class="tab-btn-premium active" onclick="switchAuthTab('login')">Login</button>
+                <button class="tab-btn-premium" onclick="switchAuthTab('register')">Register</button>
+            </div>
+
+            <div id="login-form-container" class="auth-form-premium">
+                <h2>Welcome Back</h2>
+                <form id="loginForm">
+                    <div class="form-group-premium full">
+                        <label>Email Address</label>
+                        <input type="email" id="login-email" required placeholder="your@email.com">
+                    </div>
+                    <div class="form-group-premium full">
+                        <div class="label-row" style="display: flex; justify-content: space-between; align-items: center;">
+                            <label>Password</label>
+                            <a href="forgot-password.html" class="forgot-link" style="font-size: 0.8rem; color: var(--accent-color); text-decoration: none;">Forgot Password?</a>
+                        </div>
+                        <input type="password" id="login-password" required placeholder="••••••••">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-lg w-full mt-4">Login to Account</button>
+                    
+                    <div class="social-divider" style="margin: 2rem 0; position: relative; text-align: center;">
+                        <span style="background: #fff; padding: 0 1rem; color: var(--text-light); font-size: 0.8rem; position: relative; z-index: 1;">OR CONTINUE WITH</span>
+                        <div style="position: absolute; top: 50%; left: 0; right: 0; height: 1px; background: var(--border-color); z-index: 0;"></div>
+                    </div>
+
+                    <div class="social-buttons" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <button type="button" class="social-btn google-btn" onclick="socialLogin('Google')" style="display: flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 8px; background: #fff; cursor: pointer; transition: var(--transition);">
+                            <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google" style="width: 18px;">
+                            <span style="font-weight: 500; font-size: 0.9rem;">Google</span>
+                        </button>
+                        <button type="button" class="social-btn apple-btn" onclick="socialLogin('Apple')" style="display: flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 8px; background: #000; color: #fff; cursor: pointer; transition: var(--transition);">
+                            <i class="fab fa-apple"></i>
+                            <span style="font-weight: 500; font-size: 0.9rem;">Apple</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <div id="register-form-container" class="auth-form-premium" style="display: none;">
+                <h2>Create Account</h2>
+                <form id="registerForm">
+                    <div class="form-grid-premium">
+                        <div class="form-group-premium">
+                            <label>First Name</label>
+                            <input type="text" id="reg-firstName" required>
+                        </div>
+                        <div class="form-group-premium">
+                            <label>Last Name</label>
+                            <input type="text" id="reg-lastName" required>
+                        </div>
+                        <div class="form-group-premium full">
+                            <label>Email Address</label>
+                            <input type="email" id="reg-email" required>
+                        </div>
+                        <div class="form-group-premium full">
+                            <label>Password</label>
+                            <input type="password" id="reg-password" required minlength="8">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-lg w-full mt-4">Join GOLAOWN</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Dashboard Section -->
+        <div class="dashboard-premium" id="dashboard-section" style="display: none;">
+            <div class="dashboard-sidebar-premium">
+                <div class="user-profile-mini">
+                    <div class="user-avatar-premium"><i class="fas fa-user"></i></div>
+                    <h3 id="display-name">Guest</h3>
+                    <p id="display-email">guest@example.com</p>
+                </div>
+                <nav class="dashboard-nav-premium">
+                    <a href="#" class="active"><i class="fas fa-th-large"></i> Overview</a>
+                    <a href="#"><i class="fas fa-shopping-bag"></i> Orders</a>
+                    <a href="#"><i class="fas fa-heart"></i> Wishlist</a>
+                    <a href="#" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                </nav>
+            </div>
+            <div class="dashboard-main-premium">
+                <div class="welcome-banner">
+                    <h1>Dashboard Overview</h1>
+                    <p>Track your orders, manage your profile, and explore your rewards.</p>
+                </div>
+                <div class="stats-grid-premium">
+                    <div class="stat-card-premium">
+                        <h3>0</h3>
+                        <p>Total Orders</p>
+                    </div>
+                    <div class="stat-card-premium">
+                        <h3>0</h3>
+                        <p>Rewards Points</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Premium Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>GOLAOWN</h3>
+                    <p>The pinnacle of luxury fashion, where exceptional quality meets contemporary design. Experience fashion that transcends expectations.</p>
+                    <div class="social-links" style="margin-top: 20px;">
+                        <a href="#" target="_blank" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" target="_blank" class="social-link" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                        <a href="https://www.instagram.com/gola_own" target="_blank" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <div class="footer-links">
+                        <a href="shop.html">Shop Collection</a>
+                        <a href="about.html">About Us</a>
+                        <a href="contact.html">Contact</a>
+                        <a href="returns.html">Returns</a>
+                        <a href="track-order.html">Track Order</a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <div class="footer-links">
+                        <a href="tel:+18324030393"><i class="fas fa-phone"></i> +1 832 403 0393</a>
+                        <a href="tel:+14452562355"><i class="fas fa-phone"></i> +1 445 256 2355</a>
+                        <a href="mailto:support@golaown.com"><i class="fas fa-envelope"></i> support@golaown.com</a>
+                        <a href="https://wa.me/18324030393" target="_blank" style="color: #25D366; font-weight: 600;"><i class="fab fa-whatsapp"></i> Chat on WhatsApp</a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Secure Payments</h3>
+                    <p style="font-size: 0.8rem; margin-bottom: 15px;">Secure checkout with major providers.</p>
+                    <div class="payment-methods-premium" style="display: flex; gap: 15px; font-size: 1.5rem; color: var(--white); opacity: 0.8;">
+                        <i class="fab fa-cc-visa" title="Visa"></i>
+                        <i class="fab fa-cc-mastercard" title="Mastercard"></i>
+                        <i class="fab fa-paypal" title="PayPal"></i>
+                        <i class="fab fa-apple-pay" title="Apple Pay"></i>
+                        <i class="fab fa-google-pay" title="Google Pay"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom" style="display: flex; flex-direction: column; align-items: center; gap: 15px; margin-top: 40px; border-top: 1px solid var(--premium-border); padding-top: 20px;">
+                <p>&copy; 2026 GOLAOWN. All rights reserved. | Luxury Streetwear Collection</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="api-client.js"></script>
+    <script>
+        function switchAuthTab(tab) {
+            const loginForm = document.getElementById('login-form-container');
+            const regForm = document.getElementById('register-form-container');
+            const btns = document.querySelectorAll('.tab-btn-premium');
+
+            if (tab === 'login') {
+                loginForm.style.display = 'block';
+                regForm.style.display = 'none';
+                btns[0].classList.add('active');
+                btns[1].classList.remove('active');
+            } else {
+                loginForm.style.display = 'none';
+                regForm.style.display = 'block';
+                btns[1].classList.add('active');
+                btns[0].classList.remove('active');
+            }
+        }
+
+        document.getElementById('loginForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+            
+            const result = await window.api.login(email, password);
+            if (result.success) {
+                window.api.showNotification('Welcome back! Login successful.');
+                showDashboard(result.data.user);
+            } else {
+                window.api.showNotification(result.error || 'Invalid credentials', 'error');
+            }
+        });
+
+        document.getElementById('registerForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const userData = {
+                firstName: document.getElementById('reg-firstName').value,
+                lastName: document.getElementById('reg-lastName').value,
+                email: document.getElementById('reg-email').value,
+                password: document.getElementById('reg-password').value
+            };
+
+            const result = await window.api.register(userData);
+            if (result.success) {
+                window.api.showNotification('Welcome to GOLAOWN! Account created.');
+                switchAuthTab('login');
+            } else {
+                window.api.showNotification(result.error || 'Registration failed', 'error');
+            }
+        });
+
+        function showDashboard(user) {
+            document.getElementById('auth-section').style.display = 'none';
+            document.getElementById('dashboard-section').style.display = 'grid';
+            document.getElementById('display-name').textContent = user.firstName + ' ' + user.lastName;
+            document.getElementById('display-email').textContent = user.email;
+        }
+
+        function logout() {
+            window.api.logout();
+            window.api.showNotification('Logged out successfully.');
+            location.reload();
+        }
+
+        function socialLogin(provider) {
+            window.api.showNotification(`${provider} login is coming soon to the production site.`, 'info');
+        }
+
+        // Auto-check login
+        document.addEventListener('DOMContentLoaded', () => {
+            if (window.api.isLoggedIn()) {
+                showDashboard(window.api.currentUser);
+            }
+        });
+    </script>
+</body>
+</html>
