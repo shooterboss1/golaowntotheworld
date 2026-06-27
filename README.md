@@ -44,16 +44,34 @@ A modern e-commerce platform for streetwear clothing with full shopping cart, us
 2. A GitHub account
 3. Vercel Postgres database (free tier available)
 
-### Step 1: Set up Vercel Postgres
+### Step 1: Set up Vercel Postgres (FREE Tier)
 
 1. Go to [Vercel Dashboard](https://vercel.com/dashboard)
 2. Navigate to your project's Storage tab
-3. Create a new Postgres database
-4. Copy the connection URLs (POSTGRES_URL, POSTGRES_PRISMA_URL, POSTGRES_URL_NON_POOLING)
+3. Click "Create Database" and select "Postgres"
+4. Choose the **Hobby Plan (FREE)** - includes:
+   - 512 MB storage
+   - 60 hours compute time/month
+   - Automatic backups
+   - No credit card required
+5. Copy the connection URLs (POSTGRES_URL, POSTGRES_PRISMA_URL, POSTGRES_URL_NON_POOLING)
 
 ### Step 2: Initialize Database Tables
 
 Run the following SQL in your Vercel Postgres database to create the required tables:
+
+**Option A: Fresh Database (No existing data)**
+- Run the SQL from `init-db.sql` file in your Vercel Postgres dashboard
+
+**Option B: Migrate Existing MySQL Data**
+- If you have existing data in your MySQL database, run:
+  ```bash
+  npm install
+  npm run migrate
+  ```
+- This will create a `migrated-data.sql` file with your data
+- Upload and run this file in your Vercel Postgres dashboard
+- Then run `init-db.sql` to ensure all tables and indexes are created
 
 ```sql
 -- Users table
