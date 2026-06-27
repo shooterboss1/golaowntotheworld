@@ -19,7 +19,7 @@ class ApiClient {
     // User Management
     async register(userData) {
         try {
-            const response = await fetch(`${this.baseURL}golaown-php/php/auth.php?action=register`, {
+            const response = await fetch(`${this.baseURL}api/auth?action=register`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -49,7 +49,7 @@ class ApiClient {
 
     async login(email, password) {
         try {
-            const response = await fetch(`${this.baseURL}golaown-php/php/auth.php?action=login`, {
+            const response = await fetch(`${this.baseURL}api/auth?action=login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -92,7 +92,7 @@ class ApiClient {
     async getProducts(params = {}) {
         try {
             const queryParams = new URLSearchParams(params).toString();
-            const response = await fetch(`${this.baseURL}golaown-php/php/products.php?${queryParams}`);
+            const response = await fetch(`${this.baseURL}api/products?${queryParams}`);
             if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
             const result = await response.json();
             
@@ -109,7 +109,7 @@ class ApiClient {
 
     async getProduct(productId) {
         try {
-            const response = await fetch(`${this.baseURL}golaown-php/php/products.php?id=${productId}`);
+            const response = await fetch(`${this.baseURL}api/products?id=${productId}`);
             const result = await response.json();
             
             if (response.ok && result.success) {
@@ -227,7 +227,7 @@ class ApiClient {
     // Order Management
     async createOrder(orderData) {
         try {
-            const response = await fetch(`${this.baseURL}golaown-php/php/orders.php?action=create`, {
+            const response = await fetch(`${this.baseURL}api/orders?action=create`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -250,7 +250,7 @@ class ApiClient {
 
     async getOrders() {
         try {
-            const response = await fetch(`${this.baseURL}golaown-php/php/admin.php?action=orders`);
+            const response = await fetch(`${this.baseURL}api/admin?action=orders`);
             const result = await response.json();
             return result;
         } catch (error) {
@@ -260,7 +260,7 @@ class ApiClient {
 
     async getOrder(orderId) {
         try {
-            const response = await fetch(`${this.baseURL}golaown-php/php/orders.php?orderNumber=${orderId}`);
+            const response = await fetch(`${this.baseURL}api/orders?orderNumber=${orderId}`);
             const result = await response.json();
             return result;
         } catch (error) {
@@ -270,7 +270,7 @@ class ApiClient {
 
     async trackOrder(orderNumber) {
         try {
-            const response = await fetch(`${this.baseURL}golaown-php/php/orders.php?orderNumber=${orderNumber}`);
+            const response = await fetch(`${this.baseURL}api/orders?orderNumber=${orderNumber}`);
             const result = await response.json();
             
             if (response.ok && result.success) {
@@ -286,7 +286,7 @@ class ApiClient {
 
     async createStripePaymentIntent(amount) {
         try {
-            const response = await fetch(`${this.baseURL}golaown-php/php/orders.php?action=stripe-intent`, {
+            const response = await fetch(`${this.baseURL}api/orders?action=stripe-intent`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -303,7 +303,7 @@ class ApiClient {
 
     async capturePayPalOrder(orderID) {
         try {
-            const response = await fetch(`${this.baseURL}golaown-php/php/orders.php?action=paypal-capture`, {
+            const response = await fetch(`${this.baseURL}api/orders?action=paypal-capture`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -321,7 +321,7 @@ class ApiClient {
     // User Profile Management
     async updateProfile(userData) {
         try {
-            const response = await fetch(`${this.baseURL}golaown-php/php/auth.php?action=update-profile`, {
+            const response = await fetch(`${this.baseURL}api/auth?action=update-profile`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -345,7 +345,7 @@ class ApiClient {
 
     async changePassword(oldPassword, newPassword) {
         try {
-            const response = await fetch(`${this.baseURL}golaown-php/php/auth.php?action=change-password`, {
+            const response = await fetch(`${this.baseURL}api/auth?action=change-password`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -466,7 +466,7 @@ class ApiClient {
 
     async getAdminUsers() {
         try {
-            const response = await fetch(`${this.baseURL}golaown-php/php/admin.php?action=users`);
+            const response = await fetch(`${this.baseURL}api/admin?action=users`);
             const result = await response.json();
             return result;
         } catch (error) {
@@ -477,7 +477,7 @@ class ApiClient {
 
     async getAdminStats() {
         try {
-            const response = await fetch(`${this.baseURL}golaown-php/php/admin.php?action=stats`);
+            const response = await fetch(`${this.baseURL}api/admin?action=stats`);
             const result = await response.json();
             return result;
         } catch (error) {
@@ -488,7 +488,7 @@ class ApiClient {
 
     async createProduct(productData) {
         try {
-            const response = await fetch(`${this.baseURL}golaown-php/php/products.php`, {
+            const response = await fetch(`${this.baseURL}api/products`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -506,7 +506,7 @@ class ApiClient {
 
     async updateProduct(id, productData) {
         try {
-            const response = await fetch(`${this.baseURL}golaown-php/php/products.php?id=${id}`, {
+            const response = await fetch(`${this.baseURL}api/products?id=${id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -524,7 +524,7 @@ class ApiClient {
 
     async deleteProduct(id) {
         try {
-            const response = await fetch(`${this.baseURL}golaown-php/php/products.php?id=${id}`, {
+            const response = await fetch(`${this.baseURL}api/products?id=${id}`, {
                 method: 'DELETE'
             });
 
